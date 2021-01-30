@@ -7,7 +7,7 @@ function initEditor() {
     //语言选择中文
     language: 'zh_CN',
     //高度为400
-    height: 500,
+    height: 200,
     statusbar: false,
     width: '100%',
     //工具栏上面的补丁按钮
