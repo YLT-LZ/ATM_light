@@ -1,0 +1,174 @@
+/* 后台登录的css样式表 */
+
+body {
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(135deg, #ead6ee, #a0f1ea);
+}
+
+.ym-logo h1 {
+    margin-top: 15px;
+    width: 267px;
+    height: 90px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+.ym-logo h1 a {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+div.reg-box {
+    padding-top: 10px;
+}
+
+.loginAndRegBox {
+    width: 500px;
+    height: 490px;
+    background-color: rgba(255, 255, 255, .55);
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loginAndRegBox h3 {
+    margin-top: 40px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    font-size: 35px;
+    letter-spacing: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #00a0e9;
+}
+
+.reg-box,
+.findpwd-box {
+    display: none;
+}
+
+.login-box,
+.reg-box,
+.findpwd-box {
+    padding: 30px 80px 0px;
+}
+
+.login-box span {
+    float: right;
+}
+
+.login-box span a {
+    margin: 0 5px;
+}
+
+.layui-form-item {
+    position: relative;
+}
+
+.layui-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.layui-form-item .layui-input {
+    padding-left: 32px;
+}
+
+.reg-box a,
+.findpwd-box a {
+    float: right;
+}
+
+.findpwd-box .layui-breadcrumb {
+    visibility: visible;
+}
+
+.fpwd-nav {
+    text-align: center;
+}
+
+.fpwd-nav .layui-breadcrumb cite {
+    color: #00a0e9;
+    font-style: normal;
+}
+
+.fpwd-content>div {
+    padding-top: 40px;
+}
+
+.fpwd {
+    display: none;
+}
+
+.fpwd-content {
+    margin-bottom: 30px;
+}
+
+.fpwd-content .codeval {
+    padding-left: 33px;
+}
+
+.fpwd-content .btn-getemailcode {
+    width: 134px;
+}
+
+.finalydiv,
+.finalydiv i {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    height: 100px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 100px;
+    color: #00a0e9;
+}
+
+.layui-icon {
+    color: black;
+}
+
+div.login-box .layui-icon {
+    font-size: 20px;
+    padding-top: 4px;
+}
+
+div.center {
+    display: flex;
+}
+
+div.left {
+    flex: 6;
+}
+
+div.right {
+    margin-left: 25px;
+    flex: 4;
+}
+
+div.login-box {
+    margin-top: 20px;
+}
+
+div.login-box .layui-form-item input,
+div.login-box .layui-form-item button {
+    padding-left: 45px;
+    height: 50px;
+}
+
+div #content {
+    display: flex;
+}
+
+div #c-left input {
+    width: 95%;
+}

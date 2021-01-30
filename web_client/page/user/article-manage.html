@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户文章管理</title>
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+    <link rel="stylesheet" href="../../assets/layui-v2.5.7/css/layui.css">
+    <link rel="stylesheet" href="../../css/user/article-manage.css">
+</head>
+
+<body class="layui-bg-gray">
+    <div class="layui-main">
+        <div class="layui-card">
+            <div class="layui-card-header layui-bg-green">文章管理</div>
+            <div class="layui-card-body">
+                <div class="layui-tab">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">全部(<span>xxx</span>)</li>
+                        <li>公开(<span>xxx</span>)</li>
+                        <li>私密(<span>xxx</span>)</li>
+                        <li>审核(<span>xxx</span>)</li>
+                        <li>回收站(<span>xxx</span>)</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <!-- 内容一start -->
+                        <div class="layui-tab-item layui-show one">
+                            <ul>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="paging" id="paging1"></div>
+                        </div>
+                        <!-- 内容一end -->
+                        <!-- 内容二start -->
+                        <div class="layui-tab-item two">
+                            <ul>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="paging" id="paging2"></div>
+                        </div>
+                        <!-- 内容二end -->
+                        <!-- 内容三start -->
+                        <div class="layui-tab-item three">
+                            <ul>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="paging" id="paging3"></div>
+                        </div>
+                        <!-- 内容三end -->
+                        <!-- 内容四satrt -->
+                        <div class="layui-tab-item four">
+                            <ul>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="paging" id="paging4"></div>
+                        </div>
+                        <!-- 内容四end -->
+                        <!-- 内容五start -->
+                        <div class="layui-tab-item five">
+                            <ul>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- 内容 -->
+                                    <div class="left">
+                                        <h2 class="title">文章标题</h2>
+                                        <div class="type">原创</div>
+                                        <div>
+                                            <span class="time">2010年01月25日 14:19:56</span>
+                                            <strong>|</strong>
+                                            <i class="layui-icon font-ico">&#xe68c;</i>
+                                            <i class="layui-icon font-ico">&#xe641;</i>
+                                            <i class="layui-icon font-ico">&#xe679;</i>
+                                        </div>
+                                    </div>
+                                    <!-- 按钮 -->
+                                    <div class="right">
+                                        <div class="layui-btn-group">
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe642;</i>
+                                            </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                                <i class="layui-icon">&#xe60a;</i>
+                                              </button>
+                                            <button type="button" class="layui-btn layui-btn-sm">
+                                              <i class="layui-icon">&#xe640;</i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="paging" id="paging5"></div>
+                        </div>
+                        <!-- 内容五end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../../assets/jQuery-v3.5.1/jquery-3.5.1.min.js"></script>
+    <script src="../../assets/layui-v2.5.7/layui.all.js"></script>
+    <script src="../../assets/layui-v2.5.7/layui.js"></script>
+    <script src="../../js/user/article-manage.js"></script>
+    <script>
+        //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function() {
+            var element = layui.element;
+        });
+        layui.use('laypage', function() {
+            var laypage = layui.laypage;
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'paging1', //注意，这里的 test1 是 ID，不用加 # 号
+                count: 50 //数据总数，从服务端得到
+            });
+            laypage.render({
+                elem: 'paging2', //注意，这里的 test1 是 ID，不用加 # 号
+                count: 50 //数据总数，从服务端得到
+            });
+            laypage.render({
+                elem: 'paging3', //注意，这里的 test1 是 ID，不用加 # 号
+                count: 50 //数据总数，从服务端得到
+            });
+            laypage.render({
+                elem: 'paging4', //注意，这里的 test1 是 ID，不用加 # 号
+                count: 50 //数据总数，从服务端得到
+            });
+            laypage.render({
+                elem: 'paging5', //注意，这里的 test1 是 ID，不用加 # 号
+                count: 50 //数据总数，从服务端得到
+            });
+        });
+    </script>
+</body>
+
+</html>

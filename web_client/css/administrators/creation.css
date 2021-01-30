@@ -1,0 +1,27 @@
+/* 版心 */
+
+.area {
+    width: 1200px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: aquamarine;
+}
+
+
+/* 帖子 */
+
+h3 {
+    text-align: center;
+}
+
+.media {
+    background-color: #dddddd;
+}
+
+#content {
+    padding: 20px;
+    width: 1200px;
+    float: left;
+    background-color: #aaaaaa;
+    height: 300px;
+}
