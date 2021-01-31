@@ -57,27 +57,20 @@ module.exports.Afpwd = function (req, res) {
         if (result.length !== 1) {
             return res.ck("账号和邮箱不匹配！");
         } else {
-            //记录六位随机验证码
-            var captcha = "";
-            // 通过for循环拿到六位验证码
-            for (let i = 0; i < 6; i++) {
-                captcha += parseInt(Math.random() * 10);
+            const ecode = require("../common/createcode");
+            const code = ecode(6);
+            const sendEmail = require("../common/sendecode");
+            const userInfo = req.body;
+            const results = sendEmail(code, userInfo.aemail);
+            if (results != 0) {
+                return res.ck("邮箱验证码接收失败，请稍后再试！");
             }
-            //设置邮箱的选项
-            const options = {
-                from: `"光明顶论坛" <${config.ourEmail}>`, //自己的邮箱
-                to: req.body.aemail, //要发送的邮箱
-                subject: "光明顶论坛验证码", //设置主题
-                html: `验证码为：<h4>${captcha} </h4>60秒内有效`
-            };
-            // 发送验证码
-            config.transporter.sendMail(options, function (err, info) {
-                console.log("发送成功！");
-            });
             // 然后将6位验证码和查询到的用户信息通过token令牌保存
-            const user = { ...result[0], apwd: "", aimage: "", code: captcha, islogin: false };
-            // 生成token密钥,并设置token密钥的有效时间
-            const tokenStr = jwt.sign(user, config.jwtSecretkey, { expiresIn: "60s" });
+            const user = { ...result[0], apwd: "", aimage: "", code: code, islogin: false };
+            const tokenStr = jwt.sign(user, config.jwtSecretkey, {
+                expiresIn: '60s'
+            });
+
             // 将生成的token密钥响应给客户端
             return res.send({
                 status: 0,
@@ -121,29 +114,24 @@ module.exports.Areg = (req, res) => {
             if (results2.length === 1) {
                 return res.ck("获取验证码失败，该邮箱已存在!");
             }
-            // 定义变量，记录验证码
-            var captcha = "";
-            // 通过for循环拿到六位验证码
-            for (let i = 0; i < 6; i++) {
-                captcha += parseInt(Math.random() * 10);
+            const ecode = require("../common/createcode");
+            const code = ecode(6);
+            const sendEmail = require("../common/sendecode");
+            //公司邮箱固定
+            const results = sendEmail(code, '2307458122@qq.com');
+            if (results != 0) {
+                return res.ck("邮箱验证码接收失败，请稍后再试！");
             }
-            //设置邮箱的选项
-            const options = {
-                from: `"光明顶" <${config.ourEmail}>`, //公司邮箱
-                to: '2307458122@qq.com', //要发送的邮箱
-                subject: "光明顶论坛注册验证码", //设置主题
-                html: `验证码为：<h4>${captcha} </h4>60秒内有效`
+            const userStr = {
+                code: code,
+                islogin: false
             };
-            // 发送邮箱
-            config.transporter.sendMail(options, (err, info) => {
-                console.log("注册邮箱发送成功！");
+            const tokenStr = jwt.sign(userStr, config.jwtSecretkey, {
+                expiresIn: '60s'
             });
-            // 将6位验证码进行加密，生成token令牌,并设置有效时间位60s
-            const tokenStr = jwt.sign({ code: captcha, islogin: false }, config.jwtSecretkey, { expiresIn: "60s" });
-            // 将生成的token密钥响应给客户端
-            return res.send({
+            res.send({
                 status: 0,
-                msg: "验证码发送成功！",
+                msg: "邮箱成功接收验证码，有效时间为60s",
                 token: tokenStr
             });
         });

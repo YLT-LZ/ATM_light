@@ -5,19 +5,19 @@ const {
     SMTPClient
 } = require("emailjs");
 const client = new SMTPClient({
-    user: config.ourEmail,
+    user: config.myEmail,
     password: config.myKey,
-    host: 'smtp.163.com',
+    host: 'smtp.qq.com',
     ssl: true
 });
 
 module.exports = (code, toemail) => {
     var errors = null;
     client.send({
-        text: `当前正在源码空间中找回用户密码,确保是本人操作,请在60s内前往认证,验证码为【${code}】`,
-        from: config.ourEmail,
+        text: `光明顶认证服务。确保是本人操作,请在60s内前往认证,验证码为【${code}】`,
+        from: config.myEmail,
         to: toemail,
-        subject: "源码空间找回密码"
+        subject: "to-光明顶"
     }, (err, msg) => {
         error = err;
     });
