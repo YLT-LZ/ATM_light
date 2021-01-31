@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>你要相信光-登录/注册</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <!-- 导入layui的样式 -->
+    <link rel="stylesheet" href="./assets/layui-v2.5.7/css/layui.css">
+    <script src="./assets/jQuery-v3.5.1/jquery-3.5.1.js"></script>
+    <script src="./assets/jQuery-v3.5.1/code.js"></script>
+    <script src="./assets/layui-v2.5.7/layui.js"></script>
+    <script src="./assets/layui-v2.5.7/layui.all.js"></script>
+    <script src="./assets/baseAPI.js"></script>
+    <script src="./js/login.js"></script>
+</head>
+
+<body>
+    <!-- 登录注册区域 -->
+    <div class="loginAndRegBox">
+        <h3>光明顶💖</h3>
+        <!-- 登录模块 -->
+        <div class="login-box">
+            <form class="layui-form" action="" id="form-login">
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username"></i>
+                    <input type="text" name="ulogid" required lay-verify="uid" placeholder="请输入账号" autocomplete="off"
+                        class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password"></i>
+                    <input type="password" name="upwd" required lay-verify="required|upwd" placeholder="请输入6-18位密码"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <button lay-submit="" class="layui-btn layui-btn-fluid">登录</button>
+                </div>
+            </form>
+            <span>
+                <a href="javascript:;" class="link_appeal">账号申诉</a>|<a href="javascript:;" class="link_find">找回密码</a>|<a
+                    href="javascript:;" class="link_reg">注册账号</a>
+            </span>
+        </div>
+        <!-- 注册模块 -->
+        <div class="reg-box">
+            <form class="layui-form" action="" id="form-reg">
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username"></i>
+                    <input type="text" name="ulogid" required lay-verify="required|uid" placeholder="请输入账号"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-user"></i>
+                    <input type="text" name="unick" required lay-verify="required" placeholder="请输入姓名"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-email"></i>
+                    <input type="email" name="uemail" required lay-verify="required|email" placeholder="请输入邮箱"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password"></i>
+                    <input type="password" name="upwd" required lay-verify="required|upwd" placeholder="请输入6-18位密码"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <button lay-submit="" class="layui-btn layui-btn-fluid">注册</button>
+                </div>
+            </form>
+            <a href="javascript:;" class="link_login">返回登录</a>
+        </div>
+        <!-- 找回密码 -->
+        <div class="findpwd-box">
+            <div class="fpwd-nav">
+                <span class="layui-breadcrumb" lay-separator="—">
+                    <strong><cite>填写账号</cite></strong>
+                    <span lay-separator="">—</span>
+                    <strong>邮箱认证</strong>
+                    <span lay-separator="">—</span>
+                    <strong>设置新密码</strong>
+                    <span lay-separator="">—</span>
+                    <strong>完成</strong>
+                </span>
+            </div>
+            <div class="fpwd-content">
+                <div class="">
+                    <form class="layui-form" action="" id="form-fpwdid">
+                        <div class="layui-form-item">
+                            <i class="layui-icon layui-icon-username"></i>
+                            <input type="text" name="ulogid" required lay-verify="required|uid" placeholder="请输入账号"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <input type="text" value="" class="layui-input codeval" placeholder="验证码不区分大小写">
+                            </div>
+                            <canvas id="canvas" width="100" height="43" data-code="xpbb"></canvas>
+                        </div>
+                        <div class="layui-form-item">
+                            <button lay-submit="" class="layui-btn layui-btn-fluid btn-uidsure">确定</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="fpwd">
+                    <form class="layui-form" action="" id="form-fpwdemail">
+                        <div class="layui-form-item">
+                            <i class="layui-icon layui-icon-email"></i>
+                            <input type="text" name="uemail" id="idemail" required lay-verify="required|email"
+                                placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-item layui-row">
+                            <div class="layui-input-inline layui-col-md8">
+                                <input type="text" value="" class="layui-input codeval" name="code"
+                                    placeholder="请输入邮箱验证码">
+                            </div>
+                            <button type="button" class="layui-btn layui-col-md* btn-getemailcode">获取邮箱验证码</button>
+                        </div>
+                        <div class="layui-form-item">
+                            <button lay-submit="" class="layui-btn layui-btn-fluid btn-emailsure" id="">确定</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="fpwd">
+                    <form class="layui-form forcm-fpwdpwd" action="" id="form-fpwdpwd">
+                        <div class="layui-form-item">
+                            <i class="layui-icon layui-icon-password"></i>
+                            <input type="text" name="newpwd" required lay-verify="required|upwd" placeholder="请输入新密码"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-item">
+                            <i class="layui-icon layui-icon-password"></i>
+                            <input type="text" name="aginpwd" required lay-verify="required|upwd" placeholder="请重复新密码"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-item">
+                            <button lay-submit="" class="layui-btn layui-btn-fluid btn-resetpwd">确定</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="fpwd">
+                    <div class="finalydiv">
+                        <i class="layui-icon layui-icon-face-smile"></i>
+                        <span></span>
+                    </div>
+                    <div class="layui-form-item">
+                        <button lay-submit="" class="layui-btn link_login layui-btn-fluid">返回登录</button>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:;" class="btn-backLog">返回登录</a>
+        </div>
+        <div class="appeal-box">
+            <form class="layui-form" action="" id="form-appeal">
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username"></i>
+                    <input type="text" name="ulogid" required lay-verify="uid" placeholder="请输入账号" autocomplete="off"
+                        class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <h4>提交申诉账号，管理员会与您取得联系</h4><br>
+                    <h4>共同营造文明和谐的网络环境，是你我的责任</h4><br>
+                    <h4>给您带来的不便，敬请谅解</h4><br>
+                </div>
+                <div class="layui-form-item">
+                    <button lay-submit="" class="layui-btn layui-btn-fluid">提交申诉</button>
+                </div>
+            </form>
+            <span>
+                <a href="javascript:;" class="link_login">返回登录</a>
+            </span>
+        </div>
+        <div class="feedback-box">
+            <h2 style="color: red;">管理员邮箱：2307458122@qq.com</h2>
+            <br>
+            <h4>请将申诉账号和申诉说明一并提交至该邮箱</h4>
+            <h4>24小时内会有管理员与您取得联系</h4>
+            <h4>以下是我们的联系方式，欢迎提出宝贵的意见和建议</h4>
+            <img src="./images/wx.jpg" alt="" width="120px" style="margin-right:18px ;">
+            <img src="./images/qq.JPG" alt="" width="94px"><br>
+            <br>
+            <span>
+                <a href="javascript:;" class="btn-backLog">前往首页</a>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>

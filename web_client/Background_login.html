@@ -28,11 +28,13 @@
             <form class="layui-form" action='' id="form-login">
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-username"></i>
-                    <input type="text" name="alogid" required lay-verify="uid" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                    <input type="text" name="alogid" required lay-verify="uid" placeholder="请输入账号" autocomplete="off"
+                        class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-password"></i>
-                    <input type="password" name="apwd" required lay-verify="required|upwd" placeholder="请输入6-18位密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="apwd" required lay-verify="required|upwd" placeholder="请输入6-18位密码"
+                        autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <button lay-submit='' class="layui-btn layui-btn-fluid">登录</button>
@@ -47,19 +49,23 @@
             <form class="layui-form" action='' id="form-reg">
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-username"></i>
-                    <input type="text" name="alogid" required lay-verify="required|uid" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                    <input type="text" name="alogid" required lay-verify="required|uid" placeholder="请输入账号"
+                        autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-user"></i>
-                    <input type="text" name="anick" required lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+                    <input type="text" name="anick" required lay-verify="required" placeholder="请输入昵称"
+                        autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-password"></i>
-                    <input type="password" name='apwd' required lay-verify="required|upwd" placeholder="请输入6-18位密码" autocomplete="off" class="layui-input">
+                    <input type="password" name='apwd' required lay-verify="required|upwd" placeholder="请输入6-18位密码"
+                        autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-email"></i>
-                    <input type="email" name='aemail' required lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                    <input type="email" name='aemail' required lay-verify="required|email" placeholder="请输入邮箱"
+                        autocomplete="off" class="layui-input">
                 </div>
                 <div class="center layui-form-item">
                     <div class="left ">
@@ -83,11 +89,11 @@
                 <span class="layui-breadcrumb" lay-separator="—">
                     <strong><cite>填写账号</cite></strong>
                     <span lay-separator=" ">—</span>
-                <strong>邮箱认证</strong>
-                <span lay-separator=" ">—</span>
-                <strong>设置新密码</strong>
-                <span lay-separator=" ">—</span>
-                <strong>完成</strong>
+                    <strong>邮箱认证</strong>
+                    <span lay-separator=" ">—</span>
+                    <strong>设置新密码</strong>
+                    <span lay-separator=" ">—</span>
+                    <strong>完成</strong>
                 </span>
             </div>
             <div class="fpwd-content">
@@ -96,12 +102,14 @@
                     <form class="layui-form" action=" " id="form-fpwdid">
                         <div class="layui-form-item ">
                             <i class="layui-icon layui-icon-username"></i>
-                            <input type="text" name="alogid" required lay-verify="required|uid" placeholder="请输入账号" autocomplete="off " class="layui-input ">
+                            <input type="text" name="alogid" required lay-verify="required|uid" placeholder="请输入账号"
+                                autocomplete="off " class="layui-input ">
                         </div>
                         <div class="layui-form-item" id="content">
                             <div class="layui-form-item" id="c-left">
                                 <i class="layui-icon layui-icon-vercode"></i>
-                                <input type="text" value=" " required lay-verify="required" class="layui-input codeval" placeholder="请输入验证码 ">
+                                <input type="text" value=" " required lay-verify="required" class="layui-input codeval"
+                                    placeholder="请输入验证码 ">
                             </div>
                             <div id="c-right">
                                 <canvas id="canvas" width="130" height="38" data-code="xpbb"></canvas>
@@ -117,12 +125,14 @@
                     <form class="layui-form" action=" " id="form-fpwdemail">
                         <div class="layui-form-item ">
                             <i class="layui-icon layui-icon-email "></i>
-                            <input type="text " name="aemail" id="idemail" required lay-verify="required|email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+                            <input type="text " name="aemail" id="idemail" required lay-verify="required|email"
+                                placeholder="请输入邮箱" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-form-item layui-row">
                             <div class="layui-input-inline layui-col-md8">
                                 <i class="layui-icon layui-icon-vercode"></i>
-                                <input type="text" name="code" id="ecode" required lay-verify="required" class="layui-input codeval" placeholder="请输入验证码">
+                                <input type="text" name="code" id="ecode" required lay-verify="required"
+                                    class="layui-input codeval" placeholder="请输入验证码">
                             </div>
                             <button type="button" class="layui-btn layui-col-md* btn-getemailcode">获取验证码</button>
                         </div>
@@ -136,11 +146,13 @@
                     <form class="layui-form" action=" " id="form-fpwdpwd">
                         <div class="layui-form-item ">
                             <i class="layui-icon layui-icon-password "></i>
-                            <input type="password" name="newpwd" required lay-verify="required|upwd" placeholder="请输入新密码" autocomplete="off" class="layui-input">
+                            <input type="password" name="newpwd" required lay-verify="required|upwd"
+                                placeholder="请输入新密码" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-form-item ">
                             <i class="layui-icon layui-icon-password "></i>
-                            <input type="password" name="redopwd" required lay-verify="required|upwd" placeholder="请再次确认新密码" autocomplete="off" class="layui-input">
+                            <input type="password" name="redopwd" required lay-verify="required|upwd"
+                                placeholder="请再次确认新密码" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-form-item ">
                             <button lay-submit=" " class="layui-btn layui-btn-fluid btn-resetpwd">确定</button>
@@ -151,7 +163,7 @@
                 <div class="fpwd">
                     <div class="finalydiv ">
                         <i class="layui-icon layui-icon-face-smile "></i>
-                        <span id="fpwdres"></span>
+                        <span id="fpwdres">密码找回成功</span>
                     </div>
                     <div class="layui-form-item">
                         <button lay-submit=" " class="layui-btn link_login layui-btn-fluid ">返回登录</button>
