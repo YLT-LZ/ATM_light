@@ -4,7 +4,9 @@ const nodemailer = require("nodemailer");
 module.exports.ourEmail = "inlett_wang@163.com";
 // 配置密钥
 module.exports.jwtSecretkey = "atm_gmd-_-";
+
 module.exports.myKey = 'CQSZQODRYYAHLGJQ';
+
 // 创建可重用的邮件传输器
 module.exports.transporter = nodemailer.createTransport({
     host: "smtp.163.com",
