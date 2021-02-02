@@ -27,7 +27,6 @@
     display: none;
 }
 
-
 /* 轮播图 */
 
 .Shuffling {
@@ -102,8 +101,6 @@
     width: 396px;
     height: 168px;
 }
-
-.sidebar li a {}
 
 .sidebar li a {
     float: left;

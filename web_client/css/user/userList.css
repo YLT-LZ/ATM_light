@@ -1,0 +1,67 @@
+body {
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+div.layui-card {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.layui-card-header {
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+}
+
+li.layui-this {
+    background-color: #009999;
+}
+
+.layui-tab-content ul {
+    background-color: rgba(0, 0, 0, .1);
+    border-radius: 10px;
+}
+
+div.via-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+div.via-box img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+li {
+    padding: 20px;
+    overflow: hidden;
+}
+
+ul li div {
+    float: left;
+    font-size: 12px;
+}
+
+ul li div:nth-child(2) {
+    margin-left: 20px;
+}
+
+ul li div:nth-child(3) {
+    margin: 18px 0 0 500px;
+}
+
+.content p.name,
+.content p.title {
+    font-size: 15px;
+}
+
+.content p.time {
+    padding-top: 5px;
+}
+
+div.paging {
+    padding-left: 35%;
+}
