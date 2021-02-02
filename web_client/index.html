@@ -4,11 +4,318 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>欢迎相信光的人们</title>
+    <link rel="shortcut icon" href="./favicon (4).ico">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href=".//assets/bootstrap/css/bootstrap.min.css">
+
 </head>
 
-<body>
-    nihao
+<body class="body">
+    <!-- 导航栏 -->
+    <div class="head">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- 导航栏第一个 -->
+                    <a class="navbar-brand" href="">光明顶</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <!-- 导航栏 第二个 -->
+                        <li class="active"><a href="#">论坛<span class="sr-only">(current)</span></a></li>
+                        <!-- 导航栏 第三个 -->
+                        <li><a href="#">聚焦</a></li>
+                        <!-- 一个下拉框
+                     <li class="dropdown">
+                            导航栏 第四个 
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">下拉框<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            下拉框 
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li> -->
+                    </ul>
+                    <form class="navbar-form navbar-left">
+                        <!-- 导航栏  搜索框 -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="control" placeholder="搜索帖子">
+                        </div>
+                        <button type="submit" class="btn btn-default">开始搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- 导航栏 第五个 -->
+                        <li><a href="#">登录</a></li>
+                        <li><a href="#">注册</a></li>
+                        <li class="dropdown">
+                            <!-- 导航栏 个人中心 -->
+                            <a href="#" class="dropdown-toggle" id="center" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">个人资料</a></li>
+                                <li><a href="#">写帖子</a></li>
+                                <li><a href="#">传资源</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">会员中心</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </div>
+    <!-- 版心 -->
+    <div class="Type-area">
+        <!-- 轮播图 -->
+        <div id="slidershow" class="carousel slide  Shuffling" data-ride="carousel" data-interval=2000
+            data-pause="hover" data-wrap="true">
+            <!-- 设置图片轮播的顺序 -->
+            <ol class="carousel-indicators">
+                <li class="active" data-target="#slidershow" data-slide-to="0"></li>
+                <li data-target="#slidershow" data-slide-to="1"></li>
+                <li data-target="#slidershow" data-slide-to="2"></li>
+            </ol>
+            <!--设置轮播的图片-->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="##"><img src="./images/log.png" alt="cat1"></a>
+                </div>
+                <div class="item">
+                    <a href="##"><img src="./images/奥特曼1.jpg" alt="cat2"></a>
+                </div>
+                <div class="item">
+                    <a href="##"><img src="./images/轮播图（1）.jpg" alt="cat3"></a>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#slidershow" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#slidershow" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+        <!-- 标签页 -->
+        <div class="The-label">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                        data-toggle="tab">热帖</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">娱乐</a>
+                </li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">杂谈</a>
+                </li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">经济</a>
+                </li>
+                <li role="presentation"><a href="#military" aria-controls="military" role="tab" data-toggle="tab">军事</a>
+                </li>
+                <li role="presentation"><a href="#tourism" aria-controls="tourism" role="tab" data-toggle="tab">旅游</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <ul>
+                        <li>
+                            <h3><a
+                                    href="file:///C:/Users/%E5%86%B2%E5%86%B2%E5%86%B2%EF%BC%8C%E5%A5%A5%E9%87%8C%E7%BB%99/Desktop/%E9%A1%B9%E7%9B%AE/%E6%88%91%E8%A6%81%E7%9B%B8%E4%BF%A1%E5%85%89/ATM_light/web_client/creation.html">标题</a>
+                            </h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <ul>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                    <ul>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="settings">
+                    <ul>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="military">
+                    <ul>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tourism">
+                    <ul>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                        <li>
+                            <h3><a href="#">标题</a></h3>
+                            <p>内容</p>
+                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- 左边栏 -->
+        <div class="sidebar">
+            <ul>
+                <h3>今日热点</h3>
+                <a href="#"><img src="./images/广告.jpg" alt=""></a>
+                <li><a href="#">如何完整准确全面贯彻新发展理念？习近平部署 </a></li>
+                <li><a href="#"> 用新动能推动新发展 完整准确全面贯彻新发展理念</a></li>
+                <li><a href="#">就地过年过好年 各地推出暖心举措保障就地过年</a></li>
+                <li><a href="#">财政政策如何助力“十四五”开好局？专家解答来了</a></li>
+                <li><a href="#"> 外媒:"牛角男"称愿在弹劾案中作证感觉被特朗普"出卖"</a></li>
+                <li><a href="#"> “打人书记”被免，新任济源市委书记：从严正己修身</a></li>
+                <li><a href="#">北京昨日新增1例本地确诊病例 在大兴天宫院</a></li>
+                <li class="and"><a href="#">了解更多 >></a></li>
+            </ul>
+
+        </div>
+        <!-- 在下边栏 -->
+        <div class="field">
+            <ul>
+                <li class="li1">
+                    <h3>常去板块</h3>
+                    <td class="td"></td>
+                    <dd class="dd"><a href="#"> 娱乐八卦</a></dd>
+                    <dd><a href="#">天涯杂谈</a></dd>
+                    <dd><a href="#">情感天地</a></dd>
+                    <dd><a href="#">国际观察</a></dd>
+                    <dd><a href="#">经济论坛</a></dd>
+                </li>
+                <li class="li2">
+                    <h3>社区公告</h3>
+                    <dd><a href="#">如何完整准确全面贯彻新发展理念？习近平部署 </a></dd>
+                    <dd><a href="#"> 用新动能推动新发展 完整准确全面贯彻新发展理念</a></dd>
+                    <dd><a href="#"> 阳坡村的“新名堂” 新春走基层专题</a></dd>
+                    <dd><a href="#"> 就地过年过好年 各地推出暖心举措保障就地过年</a></dd>
+                    <dd><a href="#"> 财政政策如何助力“十四五”开好局？专家解答来了</a></dd>
+                    <dd class="and"><a href="#">了解更多 》</a></dd>
+
+
+                </li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- js导入 -->
+    <script src="./assets/bootstrap/js/jquery.min.js"></script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
