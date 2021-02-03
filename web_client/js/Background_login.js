@@ -1,34 +1,32 @@
 // 后台登录/注册/忘记密码的js脚本
-
-
-$(function () {
+$(function() {
     check();
     // 登录页面点击注册后的事件
-    $(".link_reg").on("click", function () {
+    $(".link_reg").on("click", function() {
         $(".reg-box").show().siblings("div").hide();
     });
 
     // 注册页面点击登录的事件
-    $(".link_login").on("click", function () {
+    $(".link_login").on("click", function() {
         $(".login-box").show().siblings("div").hide();
     });
 
     // 登录页面点击找回密码的事件
-    $(".link_find").on("click", function () {
+    $(".link_find").on("click", function() {
         $(".findpwd-box").show().siblings("div").hide();
         code_draw();
     });
 
 
     // 点击随机验证码的事件
-    $("#canvas").on("click", function () {
+    $("#canvas").on("click", function() {
         code_draw();
     });
 
     // 忘记密码页面点击返回登录的事件
-    $(".btn-backLog").click(function (e) {
+    $(".btn-backLog").click(function(e) {
         $(".login-box").show().siblings("div").hide();
-        $.each($(".fpwd-content .layui-form"), function (i, n) {
+        $.each($(".fpwd-content .layui-form"), function(i, n) {
             n.reset();
         });
         nextnav(0);
@@ -46,7 +44,7 @@ $(function () {
     function nextnav(index) {
         $(".fpwd-content>div").addClass("fpwd").eq(index).removeClass("fpwd");
         var liststrong = $(".layui-breadcrumb>strong");
-        $.each(liststrong, function (i, n) {
+        $.each(liststrong, function(i, n) {
             $(n).text($(n).text());
         });
         var nexttxt = $(liststrong[index]).text();
@@ -54,32 +52,41 @@ $(function () {
     }
 
     // 登录功能的实现
-    $("#form-login").on("submit", function (e) {
+    $("#form-login").on("submit", function(e) {
         e.preventDefault();
         $.ajax({
             type: "POST",
             url: "/api/Alogin",
             data: $(this).serialize(),
-            success: function (res) {
+            success: function(res) {
+                //登录失败
                 if (res.status !== 0) {
                     return layer.open({
                         title: '提示',
                         icon: 2,
                         content: res.msg
                     });
-
+                    // 登录成功
+                } else {
+                    layer.msg("登录成功！", {
+                        title: "提示",
+                        icon: 1,
+                        end: function() {
+                            // 本地存储有效数据
+                            sessionStorage.setItem("Arefresh", true);
+                            localStorage.setItem("Atoken", res.token);
+                            // 跳转到管理员首页
+                            location.href = "./administrators.html";
+                        }
+                    });
                 }
                 return layer.open({
                     title: '注意',
                     content: '登录成功！',
                     icon: 1,
                     time: 2000,
-                    end: function () {
-                        // 因为SessionStorage声明周期为当前站点通信期间，只要当前浏览器的访问域名没有发生改变，则SessionStorage一直存在(例如页面的刷新，同一个域名内页面的跳转)
-                        // 如果因为人为关闭当前浏览器的标签页断开与域名的通信过程，或者直接关闭浏览器则sessionStorage直接被自动清理
-                        sessionStorage.setItem("refresh", true);
-                        localStorage.setItem("Atoken", res.token);
-                        //     location.href = "./../index.html";
+                    end: function() {
+
                     }
                 });
 
@@ -88,7 +95,7 @@ $(function () {
     });
 
     // 【注册管理员账号】注册功能的实现
-    $("#form-reg").on("submit", function (e) {
+    $("#form-reg").on("submit", function(e) {
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -97,7 +104,7 @@ $(function () {
                 Authorization: `Bearer ${localStorage.getItem("regToken") || ""}`
             },
             data: $(this).serialize(),
-            success: function (res) {
+            success: function(res) {
                 if (res.status !== 0) {
                     return layer.open({
                         title: '提示',
@@ -111,12 +118,12 @@ $(function () {
                     content: res.msg,
                     btn: ['确定', '取消'],
                     icon: 1,
-                    yes: function () {
+                    yes: function() {
                         layer.close(layerindex);
                         $("#form-reg")[0].reset();
                         $(".link_login").click();
                     },
-                    btn2: function () {
+                    btn2: function() {
                         $("#form-reg")[0].reset();
                     }
                 });
@@ -126,14 +133,14 @@ $(function () {
     });
 
     // 【注册管理员账号】获取授权码的事件
-    $(".btn-auth").on("click", function (e) {
+    $(".btn-auth").on("click", function(e) {
         e.preventDefault();
         const data = ($("#form-reg").serializeArray()).splice(0, 4);
         $.ajax({
             type: "POST",
             url: "/api/Areg",
             data: data,
-            success: function (res) {
+            success: function(res) {
                 if (res.status !== 0) {
                     return layer.open({
                         title: '提示',
@@ -146,7 +153,7 @@ $(function () {
                     content: "邮箱发送成功,请注意查收！",
                     icon: 1,
                     time: 2000,
-                    end: function () {
+                    end: function() {
                         // 将用户的验证码存储到本地
                         localStorage.setItem("regToken", res.token);
                         // 设置秒数
@@ -183,14 +190,14 @@ $(function () {
 
     var user = null;
     //【忘记密码】根据用户输入的账号判断是否存在该账户
-    $("#form-fpwdid").on("submit", function (e) {
+    $("#form-fpwdid").on("submit", function(e) {
         e.preventDefault();
         const data = ($(this).serializeArray()).splice(0, 1);
         $.ajax({
             type: "POST",
             url: "/api/Alogid",
             data: data,
-            success: function (res) {
+            success: function(res) {
                 // 如果状态不为0
                 if (res.status !== 0) {
                     return layer.open({
@@ -234,7 +241,7 @@ $(function () {
     });
 
     //【忘记密码】处理获取邮箱验证码
-    $(".btn-getemailcode").on("click", function () {
+    $(".btn-getemailcode").on("click", function() {
         // 先判断邮箱地址是否和账号中的邮箱对应
 
         // 如果user为空,则没有存储服务器返回的数据
@@ -261,7 +268,7 @@ $(function () {
             type: "POST",
             url: "/api/Afpwd",
             data: { alogid: user.alogid, aemail: $("#idemail").val() },
-            success: function (res) {
+            success: function(res) {
                 // 如果服务器响应的状态不为0
                 if (res.status !== 0) {
                     return layer.open({
@@ -276,7 +283,7 @@ $(function () {
                     icon: 1,
                     content: res.msg,
                     time: 2000,
-                    end: function () {
+                    end: function() {
                         // 将用户数据存入本地
                         sessionStorage.setItem('fpwdToken', res.token);
                         // 设置秒数
@@ -311,7 +318,7 @@ $(function () {
     });
 
     //【忘记密码】验证邮箱
-    $("#form-fpwdemail").on("submit", function (e) {
+    $("#form-fpwdemail").on("submit", function(e) {
         e.preventDefault();
         // 判断本地的数据是否过期
         if (!sessionStorage.getItem("fpwdToken")) {
@@ -330,7 +337,7 @@ $(function () {
                 Authorization: sessionStorage.getItem("fpwdToken") || ''
             },
             data: $("#form-fpwdemail").serialize(),
-            success: function (res) {
+            success: function(res) {
                 if (res.status !== 0) {
                     return layer.open({
                         title: '提示',
@@ -346,7 +353,7 @@ $(function () {
                 });
                 sessionStorage.setItem('alogidToken', res.token);
                 var time = 10 * 60;
-                var interval = setInterval(function () {
+                var interval = setInterval(function() {
                     time--;
                     // 如果计数器=0
                     if (time == 0) {
@@ -363,7 +370,7 @@ $(function () {
     });
 
     // 【忘记密码】设置新密码的操作
-    $("#form-fpwdpwd").on("submit", function (e) {
+    $("#form-fpwdpwd").on("submit", function(e) {
         e.preventDefault();
         // 如果本地数据不存在了
         if (!sessionStorage.getItem("alogidToken")) {
@@ -381,7 +388,7 @@ $(function () {
                 Authorization: sessionStorage.getItem("alogidToken") || ''
             },
             data: $("#form-fpwdpwd").serialize(),
-            success: function (res) {
+            success: function(res) {
                 if (res.status !== 0) {
                     return layer.open({
                         title: '提示',

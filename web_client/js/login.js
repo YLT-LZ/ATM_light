@@ -1,22 +1,30 @@
-$(function () {
+$(function() {
     // 点击事件
-    $(".link_reg").on("click", function () {
+    $(".link_reg").on("click", function() {
         // 注册账号页面显示，其他页面隐藏
         $(".reg-box").show().siblings("div").hide();
     });
+
+    // 如果本地存储的注册键值为true
+    if (sessionStorage.getItem("register")) {
+        // 则清除该本地
+        sessionStorage.removeItem("register");
+        // 并跳转到注册页面
+        $(".link_reg").click();
+    }
     // 点击事件
-    $(".link_login").on("click", function () {
+    $(".link_login").on("click", function() {
         // 登录页面显示，其他页面隐藏
         $(".login-box").show().siblings("div").hide();
         $('input').val("");
     });
     // 点击事件
-    $(".link_appeal").on("click", function () {
+    $(".link_appeal").on("click", function() {
         // 申诉页面显示，其他页面隐藏
         $(".appeal-box").show().siblings("div").hide();
     });
     // 点击事件
-    $(".link_find").on("click", function () {
+    $(".link_find").on("click", function() {
         // 找回密码页面显示，其他页面隐藏
         $(".findpwd-box").show().siblings("div").hide();
         // 调用code中的code_draw()方法，生成随机验证码
@@ -38,17 +46,17 @@ $(function () {
     });
 
     // 点击验证码图片
-    $("#canvas").on("click", function () {
+    $("#canvas").on("click", function() {
         // 调用验证码生成方法，刷新验证码
         code_draw();
     });
 
     // 返回登录的点击事件
-    $(".btn-backLog").click(function (e) {
+    $(".btn-backLog").click(function(e) {
         // 登录页面显示
         $(".login-box").show().siblings("div").hide();
         // 循环遍历找回密码的表单
-        $.each($(".fpwd-content .layui-form"), function (i, n) {
+        $.each($(".fpwd-content .layui-form"), function(i, n) {
             // 清除找回密码表单数据
             n.reset();
         });
@@ -65,7 +73,7 @@ $(function () {
         $(".fpwd-content>div").addClass("fpwd").eq(index).removeClass("fpwd");
         var liststrong = $(".layui-breadcrumb>strong");
         // 排他思想循环遍历将流程展示行上的city标签全部去除
-        $.each(liststrong, function (i, n) {
+        $.each(liststrong, function(i, n) {
             $(n).text($(n).text());
         });
         // 获取当前传入索引的内容
@@ -75,7 +83,7 @@ $(function () {
     }
 
     // 登录功能的实现
-    $("#form-login").on("submit", function (e) {
+    $("#form-login").on("submit", function(e) {
         // 清除表单的默认事件
         e.preventDefault();
         // 发起ajax请求
@@ -86,7 +94,7 @@ $(function () {
             method: "POST",
             // serialize方法获取表单的所有内容
             data: $(this).serialize(),
-            success: function (res) {
+            success: function(res) {
                 if (res.status !== 0) {
                     return layer.open({
                         title: '提示',
@@ -94,21 +102,27 @@ $(function () {
                         content: res.msg
                     });
                 }
+                // 登录成功后的token
                 localStorage.setItem("token", res.token);
+                // 关闭的token
                 sessionStorage.setItem("refresh", true);
                 layer.open({
                     title: '注意',
-                    content: '登录成功！'
+                    icon: 1,
+                    content: '登录成功！',
+                    end: function() {
+                        // 并跳转到主页
+                        location.href = './index.html';
+                    }
                 });
-                location.href = "./index.html";
             }
         });
     });
 
     // 注册功能的实现
-    $("#form-reg").on("submit", function (e) {
+    $("#form-reg").on("submit", function(e) {
         e.preventDefault();
-        $.post("/api/reguser", $(this).serialize(), function (res) {
+        $.post("/api/reguser", $(this).serialize(), function(res) {
             if (res.status !== 0) {
                 return layer.open({
                     title: '提示',
@@ -121,12 +135,12 @@ $(function () {
                 content: res.msg + "请登录！",
                 btn: ['确定', '取消'],
                 icon: 1,
-                yes: function () {
+                yes: function() {
                     layer.close(layerindex);
                     $("#form-reg")[0].reset();
                     $(".link_login").click();
                 },
-                btn2: function () {
+                btn2: function() {
                     $("#form-reg")[0].reset();
                 }
             });
@@ -135,10 +149,10 @@ $(function () {
 
     // 找回密码功能的实现
     var user = null;
-    $("#form-fpwdid").on("submit", function (e) {
+    $("#form-fpwdid").on("submit", function(e) {
         e.preventDefault();
         // 将输入的内容转为大写，可通过这步进行大小写验证
-        $.post("/api/getuser", $(this).serialize(), function (res) {
+        $.post("/api/getuser", $(this).serialize(), function(res) {
             if (res.status !== 0) {
                 return layer.open({
                     title: '提示',
@@ -173,7 +187,7 @@ $(function () {
     });
 
     // 处理获取邮箱验证码
-    $(".btn-getemailcode").on("click", function () {
+    $(".btn-getemailcode").on("click", function() {
         // 先判断邮箱地址是否和账号中的邮箱对应
         if (!user) {
             layer.open({
@@ -224,7 +238,7 @@ $(function () {
         });
     });
     // 验证邮箱验证码
-    $("#form-fpwdemail").on("submit", function (e) {
+    $("#form-fpwdemail").on("submit", function(e) {
         e.preventDefault();
         if (!sessionStorage.getItem("codetoken")) {
             return layer.open({
@@ -298,7 +312,7 @@ $(function () {
         });
     });
 
-    $('#form-fpwdpwd').on('submit', function (e) {
+    $('#form-fpwdpwd').on('submit', function(e) {
         e.preventDefault();
         if (!sessionStorage.getItem("idtoken")) {
             return layer.open({
@@ -348,10 +362,10 @@ $(function () {
                 }
             })
         }
-    })
+    });
 
 
-    $('#form-appeal').on('submit', function (e) {
+    $('#form-appeal').on('submit', function(e) {
         e.preventDefault();
         $.ajax({
             // 请求地址
@@ -360,13 +374,13 @@ $(function () {
             method: "POST",
             // serialize方法获取表单的所有内容
             data: $(this).serialize(),
-            success: function (res) {
+            success: function(res) {
                 if (res.status !== 0) {
                     return layer.open({
                         title: '提示',
                         icon: 2,
                         content: res.msg,
-                        end: function () {
+                        end: function() {
                             $(".link_login").click()
                         }
                     });
@@ -374,7 +388,7 @@ $(function () {
                 layer.open({
                     title: '注意',
                     content: res.msg,
-                    end: function () {
+                    end: function() {
                         $(".feedback-box").show().siblings("div").hide();
                         $.each($(".appeal-box .layui-form"), (i, item) => {
                             item.reset();

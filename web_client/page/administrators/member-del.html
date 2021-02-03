@@ -6,11 +6,11 @@
     <title>光明顶论坛</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-        content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="../../css/administrators/font.css">
     <link rel="stylesheet" href="../../css/administrators/xadmin.css">
+    <link rel="stylesheet" href="../../assets/layui-v2.5.7/css/layui.css">
     <script src="../../assets/jQuery-v3.5.1/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="../../assets/layui-v2.5.7/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="../../js/administrators/xadmin.js"></script>
@@ -28,19 +28,17 @@
             <a>
                 <cite>审核/封禁列表</cite></a>
         </span>
-        <a class="layui-btn layui-btn-primary layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
-            href="javascript:location.replace(location.href);" title="刷新">
-            <i class="layui-icon" style="line-height:38px">ဂ</i></a>
+        <a class="layui-btn layui-btn-primary layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+            <i class="layui-icon" style="line-height:38px">&#xe666;</i></a>
     </div>
     <table class="layui-table">
         <thead>
             <tr>
                 <th>
-                    <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
-                            class="layui-icon">&#xe605;</i></div>
+                    <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
                 </th>
                 <th>ID</th>
-                <th>用户名</th>
+                <th>昵称</th>
                 <th>邮箱</th>
                 <th>状态</th>
                 <th>操作</th>
@@ -49,27 +47,23 @@
         <tbody>
             <tr>
                 <td>
-                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i
-                            class="layui-icon">&#xe605;</i></div>
+                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                 </td>
                 <td>1</td>
                 <td>小明</td>
                 <td>admin@mail.com</td>
                 <td class="td-status">
-                    <span class="layui-btn layui-btn-danger layui-btn-mini" id="woo">
-                        正在审核
-                    </span>
+                    <span class="layui-btn layui-btn-normal layui-btn-sm">待审核</span>
                 </td>
                 <td class="td-manage">
-                    <a title="恢复" onclick="member_del(this,'要恢复的id')" href="javascript:;">
-                        <i class="layui-icon">&#xe618;</i>
+                    <a onclick="member_stop(this,'100001')" href="javascript:;" title="恢复">
+                        <i class="layui-icon">&#xe61f;</i>
                     </a>
-                    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                        <i class="layui-icon">&#xe640;</i>
+                    <a onclick="member_del(this,'100001')" href="javascript:;" title="封禁">
+                        <i class="layui-icon">&#xe616</i>
                     </a>
                 </td>
             </tr>
-
         </tbody>
     </table>
     <div class="page">
@@ -85,7 +79,7 @@
 
     </div>
     <script>
-        layui.use('laydate', function () {
+        layui.use('laydate', function() {
             var laydate = layui.laydate;
 
             //执行一个laydate实例
@@ -100,30 +94,53 @@
         });
 
 
-        /*用户-删除*/
-        function member_del(obj, id) {
-            layer.confirm('确认要删除吗？', function (index) {
-                //发异步删除数据
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', {
-                    icon: 1,
-                    time: 1000
-                });
+
+
+        /*用户-恢复*/
+        function member_stop(obj, id) {
+            layer.confirm('确认要恢复吗？', function(index) {
+
+                if ($(obj).attr('title') == '恢复') {
+
+                    //发异步把用户状态进行更改
+                    $(obj).attr('title', '恢复')
+                    $(obj).find('i').html('&#xe61f;');
+
+                    $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已恢复');
+                    layer.msg('已恢复!', {
+                        icon: 6,
+                        time: 1000
+                    });
+
+                } else {
+                    $(obj).attr('title', '启用')
+
+                }
+
             });
         }
 
+        /*用户-封禁*/
+        function member_del(obj, id) {
+            layer.confirm('确认要封禁吗？', function(index) {
 
+                if ($(obj).attr('title') == '封禁') {
 
-        function delAll(argument) {
+                    //发异步把用户状态进行更改
+                    $(obj).attr('title', '封禁')
+                    $(obj).find('i').html('&#xe616');
 
-            var data = tableCheck.getData();
+                    $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已封禁');
+                    layer.msg('已封禁!', {
+                        icon: 5,
+                        time: 1000
+                    });
 
-            layer.confirm('确认要恢复吗？' + data, function (index) {
-                //捉到所有被选中的，发异步进行删除
-                layer.msg('恢复成功', {
-                    icon: 1
-                });
-                $(".layui-form-checked").not('.header').parents('tr').remove();
+                } else {
+                    $(obj).attr('title', '封禁')
+
+                }
+
             });
         }
     </script>

@@ -4,7 +4,7 @@ const mysql = require('mysql');
 const db = mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
-    password: '19991025',
+    password: 'wmx040608..',
     database: 'atm'
 });
 // 将db对象共享

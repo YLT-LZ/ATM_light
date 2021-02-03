@@ -23,9 +23,15 @@
     width: 600px;
 }
 
+li.dropdown {
+    display: inline;
+    height: 50px;
+}
+
 #center {
     display: none;
 }
+
 
 /* 轮播图 */
 
