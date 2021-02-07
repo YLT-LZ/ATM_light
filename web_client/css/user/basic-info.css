@@ -43,6 +43,18 @@ ul li {
     height: 60px;
     line-height: 60px;
 }
+#userphoto2{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    font-size: 60px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 100px;
+    color: sandybrown;
+    background-color: rgb(173, 84, 114);
+}
 
 ul li div {
     text-align: center;

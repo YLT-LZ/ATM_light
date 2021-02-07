@@ -21,6 +21,7 @@ li.layui-this {
 .layui-tab-content ul {
     background-color: rgba(0, 0, 0, .1);
     border-radius: 10px;
+    padding: 0 20px;
 }
 
 div.via-box {
@@ -30,13 +31,19 @@ div.via-box {
 }
 
 div.via-box img {
+    margin-top: 10px;
     width: 100%;
     height: 100%;
     border-radius: 50%;
 }
 
+#focusbut,#focusbut2,#focusbut3{
+    width: 200px;
+    float: right;
+}
+
 li {
-    padding: 20px;
+    padding: 10px;
     overflow: hidden;
 }
 

@@ -1,5 +1,4 @@
 // 管理员模块的路由处理函数：需要身份认证
-
 // 导入表单数据验证的模块
 const checkym = require("../checkym/userifor");
 // 导入数据库模块
@@ -10,7 +9,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 // 导入配置模块
 const config = require("../config");
-
+// 导入修改个人信息的表单验证
+const ckupdate = require('../checkym/userupdate');
 // 【忘记密码】设置新密码的路由处理函数
 module.exports.fsetpwd = function (req, res) {
     // 如果user为空
@@ -36,7 +36,6 @@ module.exports.fsetpwd = function (req, res) {
         return res.ck("修改密码成功", 0);
     });
 };
-
 // 【忘记密码】验证邮箱验证码的路由处理函数 
 module.exports.fpwdCode = function (req, res) {
     // 对管理员的邮箱再次进行验证
@@ -82,7 +81,6 @@ module.exports.fpwdCode = function (req, res) {
         }
     });
 };
-
 // 添加新管理员的路由处理函数
 module.exports.register = (req, res) => {
     const data = req.body;
@@ -213,6 +211,422 @@ module.exports.resetpwd = (req, res) => {
                 return res.ck("重置密码失败,请稍后再试！");
             }
             res.ck("重置密码成功！", 0);
+        });
+    });
+}
+//获取用户信息的路由处理函数
+module.exports.myinfor = (req, res) => {
+    // 为了防止用户密码泄密，查询基本信息除过密码
+    const sql = 'SELECT id,ulogid,uemail,unick,uimage,ustatus FROM atm.atm_user WHERE id=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, req.user.id, (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.length !== 1) {
+            return res.ck('获取用户信息失败！');
+        }
+        // 将用户信息响应给客户端
+        res.send({
+            status: 0,
+            msg: '获取用户信息成功！',
+            data: results[0]
+        });
+    });
+}
+//修改用户信息的路由处理函数
+module.exports.updateuser = (req, res) => {
+    const userinfor = req.body;
+    console.log(userinfor);
+    const err = ckupdate(userinfor);
+    if (err) {
+        return res.ck(err);
+    }
+    const sqlbyuname = 'SELECT * FROM atm_user WHERE atm_user.unick=?';
+    // 执行sql查询
+    db.query(sqlbyuname, [userinfor.unick], function (err, results) {
+        if (err) {
+            return res.ck(err);
+        }
+        const sql = 'UPDATE atm_user SET uemail=?,unick=?,uimage=? WHERE id=?';
+        db.query(sql, [userinfor.uemail, userinfor.unick, userinfor.avatar, req.user.id], (err, results) => {
+            if (err) {
+                return res.ck(err);
+            }
+            if (results.affectedRows !== 1) {
+                return res.ck('修改用户信息失败，请稍后再试！');
+            }
+            return res.ck('基本信息修改成功！', 0);
+        });
+    });
+}
+// 获取用户粉丝的路由处理函数
+module.exports.myfans = (req, res) => {
+    const sql = 'SELECT atm_fans.id,atm_fans.uid,atm_user.unick,atm_user.uimage,atm_fans.ufansid,atm_fans.ustatus FROM atm.atm_fans INNER JOIN atm_user on atm_fans.ufansid=atm_user.id WHERE uid=? and atm_fans.ustatus=0';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, req.user.id, (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        // 将用户信息响应给客户端
+        res.send({
+            status: 0,
+            msg: '获取用户粉丝成功！',
+            data: results
+        });
+    });
+}
+// 获取用户关注的路由处理函数
+module.exports.follow = (req, res) => {
+    const sql = 'SELECT atm_focus.id,atm_focus.uid,atm_user.unick,atm_user.uimage,atm_focus.ufocusid,atm_focus.ustatus FROM atm.atm_focus INNER JOIN atm_user on atm_focus.ufocusid=atm_user.id WHERE uid=? and atm_focus.ustatus=0';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, req.user.id, (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        // 将用户信息响应给客户端
+        res.send({
+            status: 0,
+            msg: '获取用户关注列表成功！',
+            data: results
+        });
+    });
+}
+// 获取用户黑名单的路由处理函数
+module.exports.blacklist = (req, res) => {
+    const sql = 'SELECT atm_blacklist.id, atm_blacklist.uid, atm_user.unick, atm_user.uimage, atm_blacklist.ublacklistid, atm_blacklist.ustatus FROM atm.atm_blacklist INNER JOIN atm_user on atm_blacklist.ublacklistid = atm_user.id WHERE uid =? and atm_blacklist.ustatus = 1';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, req.user.id, (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        // 将用户信息响应给客户端
+        res.send({
+            status: 0,
+            msg: '获取用户黑名单列表成功！',
+            data: results
+        });
+    });
+}
+
+
+
+
+// 取关的路由处理函数
+module.exports.followPass = (req, res) => {
+    const sql = 'UPDATE atm_focus SET ustatus=1 WHERE uid=? AND ufocusid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ufocusid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('取消关注失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('取消关注成功', 0)
+    });
+}
+// 加关注的路由处理函数
+module.exports.followNOPass = (req, res) => {
+    const sql = 'UPDATE atm_focus SET ustatus=0 WHERE uid=? AND ufocusid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ufocusid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('关注失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('关注成功', 0)
+    });
+}
+// 添加粉丝的路由处理函数
+module.exports.Powdering = (req, res) => {
+    const sql = 'UPDATE atm_fans SET ustatus=0 WHERE uid=? AND ufansid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ufansid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('粉丝添加失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('粉丝添加成功', 0)
+    });
+}
+// 删除粉丝的路由处理函数
+module.exports.NOPowdering = (req, res) => {
+    const sql = 'UPDATE atm_fans SET ustatus=1 WHERE uid=? AND ufansid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ufansid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('粉丝删除失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('粉丝删除成功', 0)
+    });
+}
+// 添加黑名单的路由处理函数
+module.exports.NOblackuser = (req, res) => {
+    const sql = 'UPDATE atm_blacklist SET ustatus=1 WHERE uid=? AND ublacklistid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ublacklistid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('添加黑名单失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('添加成功', 0)
+    });
+}
+// 去除黑名单的路由处理函数
+module.exports.blackuser = (req, res) => {
+    const sql = 'UPDATE atm_blacklist SET ustatus=0 WHERE uid=? AND ublacklistid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ublacklistid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('取消黑名单失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('取消黑名单成功', 0)
+    });
+}
+
+
+//自己操作后别人的数据进行改变
+// 取关的路由处理函数2
+module.exports.TRfollowPass = (req, res) => {
+    const sql = 'UPDATE atm_focus SET ustatus=1 WHERE uid=? AND ufocusid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.body.ufocusid, req.user.id], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('取消关注失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('取消关注成功', 0)
+    });
+}
+// 添加粉丝的路由处理函数2
+module.exports.TRPowdering = (req, res) => {
+    const sql = 'UPDATE atm_fans SET ustatus=0 WHERE uid=? AND ufansid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.body.ufansid, req.user.id], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('添加粉丝失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('添加粉丝成功', 0)
+    });
+}
+// 删除粉丝的路由处理函数2
+module.exports.TRNOPowdering = (req, res) => {
+    const sql = 'UPDATE atm_fans SET ustatus=1 WHERE uid=? AND ufansid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.body.ufansid, req.user.id], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('删除粉丝失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('删除粉丝成功', 0)
+    });
+}
+
+
+// 如果数据库没有数据，进行写入
+// 写入关注的处理函数
+module.exports.XRfollowPass = (req, res) => {
+    const sql = 'INSERT INTO atm_focus SET uid=?,ufocusid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ufocusid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('关注失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('关注成功', 0)
+    });
+}
+// 写入粉丝的处理函数
+module.exports.XRPowdering = (req, res) => {
+    const sql = 'INSERT INTO atm_fans SET uid=?,ufansid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ufansid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('添加粉丝失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('添加粉丝成功', 0)
+    });
+}
+// 写入黑名单的处理函数
+module.exports.XRblackuser = (req, res) => {
+    const sql = 'INSERT INTO atm_blacklist SET uid=?,ublacklistid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ublacklistid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('添加黑名单失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('添加黑名单成功', 0)
+    });
+}
+
+
+// 如果数据库没有数据，他人进行写入数据
+// 写入粉丝的处理函数
+module.exports.TRXRPowdering = (req, res) => {
+    const sql = 'INSERT INTO atm_fans SET uid=?,ufansid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.body.ufansid, req.user.id], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.affectedRows !== 1) {
+            return res.ck('添加粉丝失败！');
+        }
+        // 将用户信息响应给客户端
+        res.ck('添加粉丝成功', 0)
+    });
+}
+
+
+// 查询数据库中是否存在某数据的模块
+// 获取用户粉丝的路由处理函数
+module.exports.CXmyfans = (req, res) => {
+    const sql = 'SELECT * FROM atm.atm_fans WHERE uid=? AND ufansid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ufansid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.length !== 1) {
+            return res.ck('不存在粉丝');
+        }
+        res.send({
+            status: 0,
+            msg: '获取粉丝成功！',
+            data: results
+        });
+    });
+}
+// 获取用户关注的路由处理函数
+module.exports.CXfollow = (req, res) => {
+    const sql = 'SELECT * FROM atm.atm_focus WHERE uid=? AND ufocusid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ufocusid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.length !== 1) {
+            return res.ck('不存在关注');
+        }
+        res.send({
+            status: 0,
+            msg: '获取关注成功！',
+            data: results
+        });
+    });
+}
+// 获取用户黑名单的路由处理函数
+module.exports.CXblacklist = (req, res) => {
+    const sql = 'SELECT * FROM atm.atm_blacklist WHERE uid=? AND ublacklistid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.user.id, req.body.ublacklistid], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.length !== 1) {
+            return res.ck('不存在拉黑');
+        }
+        res.send({
+            status: 0,
+            msg: '获取拉黑数据成功！',
+            data: results
+        });
+    });
+}
+
+
+// 查询数据库中是否存在他人某数据的模块
+// 获取用户粉丝的路由处理函数2
+module.exports.CXTRmyfans = (req, res) => {
+    const sql = 'SELECT * FROM atm.atm_fans WHERE uid=? AND ufansid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.body.ufansid, req.user.id], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.length !== 1) {
+            return res.ck('不存在粉丝');
+        }
+        res.send({
+            status: 0,
+            msg: '获取粉丝成功！',
+            data: results
+        });
+    });
+}
+// 获取用户关注的路由处理函数2
+module.exports.CXTRfollow = (req, res) => {
+    const sql = 'SELECT * FROM atm.atm_focus WHERE uid=? AND ufocusid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.body.ufocusid, req.user.id], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.length !== 1) {
+            return res.ck('不存在关注');
+        }
+        res.send({
+            status: 0,
+            msg: '获取关注成功！',
+            data: results
+        });
+    });
+}
+// 获取用户黑名单的路由处理函数2
+module.exports.CXTRblacklist = (req, res) => {
+    const sql = 'SELECT * FROM atm.atm_blacklist WHERE uid=? AND ublacklistid=?';
+    // 调用query方法查询用户对象的信息
+    db.query(sql, [req.body.ublacklistid, req.user.id], (err, results) => {
+        if (err) {
+            return res.ck(err);
+        }
+        if (results.length !== 1) {
+            return res.ck('不存在黑名单用户');
+        }
+        res.send({
+            status: 0,
+            msg: '获取黑名单成功！',
+            data: results
         });
     });
 }

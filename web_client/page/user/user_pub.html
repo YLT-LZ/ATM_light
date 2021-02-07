@@ -31,19 +31,16 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">文章标题</label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" placeholder="请输入文章标题" autocomplete="off" class="layui-input" required lay-verify="required">
+                            <input type="text" name="tname" placeholder="请输入文章标题" autocomplete="off" class="layui-input"
+                                required lay-verify="required" id="tname">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">文章分类</label>
                         <div class="layui-input-block">
-                            <select name="type_id" lay-verify="required">
-                                <script type="text/html" id="article-type">
-                                    <option value="" selected>请选择</option>
-                                    {{each data}}
-                                    <option value='{{$value.id}}'>{{$value.type}}</option>
-                                    {{/each}}
-                                </script>
+                            <select name="ttype" lay-verify="required" id="ttype">
+                                <option value="0" selected>请选择</option>
+                                <option value="1" selected>Web全栈开发</option>
                             </select>
                         </div>
                     </div>
@@ -51,7 +48,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">文章内容</label>
                     <div class="layui-input-block">
-                        <textarea name="content" placeholder="请书写文章内容" class="layui-textarea" id="textarea"></textarea>
+                        <textarea name="tcontent" placeholder="请书写文章内容" class="layui-textarea" id="textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -65,7 +62,7 @@
         </div>
     </div>
     <script>
-        layui.use('form', function() {
+        layui.use('form', function () {
             var form = layui.form;
             form.render();
             form.render('select');
