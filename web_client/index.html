@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>欢迎相信光的人们</title>
+    <title>主页</title>
     <link rel="shortcut icon" href="./favicon (4).ico">
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./assets/layui-v2.5.7/css/layui.css">
     <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/layui-v2.5.7/css/layui.css">
+    <link rel="stylesheet" href="./assets/zyMedia-master/zy.media.min.css">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body class="body">
     <!-- 导航栏 -->
     <div class="head">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" style="border-radius: 0px; margin-bottom: 0px;">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -33,24 +33,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <!-- 导航栏 第二个 -->
-                        <li class="active"><a href="#">论坛<span class="sr-only">(current)</span></a></li>
-                        <!-- 导航栏 第三个 -->
-                        <li><a href="#">聚焦</a></li>
-                        <!-- 一个下拉框
-                     <li class="dropdown">
-                            导航栏 第四个 
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">下拉框<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            下拉框 
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li> -->
+                        <li class="active"><a href="javascript:;">首页<span class="sr-only">(current)</span></a></li>
                     </ul>
                     <form class="navbar-form navbar-left">
                         <!-- 导航栏  搜索框 -->
@@ -69,7 +52,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="./page/user/basic-info.html">个人资料</a></li>
                                 <li><a href="./page/user/user_pub.html">写帖子</a></li>
-                                <li><a href="#">传资源</a></li>
+                                <li><a href="./page/user/user_repository.html">我的资源库</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <a href="./page/user/userList.html">会员中心</a>
@@ -83,238 +66,364 @@
             <!-- /.container-fluid -->
         </nav>
     </div>
+    <!-- 顶部广告 -->
+    <div style="margin-bottom: 10px; padding: 0 48px;">
+        <img src="https://img-bss.csdn.net/1612491964341.png" alt="" style="width: 100%;height: 90px;">
+    </div>
     <!-- 版心 -->
-    <div class="Type-area">
-        <!-- 轮播图 -->
-        <div id="slidershow" class="carousel slide  Shuffling" data-ride="carousel" data-interval=2000 data-pause="hover" data-wrap="true">
-            <!-- 设置图片轮播的顺序 -->
-            <ol class="carousel-indicators">
-                <li class="active" data-target="#slidershow" data-slide-to="0"></li>
-                <li data-target="#slidershow" data-slide-to="1"></li>
-                <li data-target="#slidershow" data-slide-to="2"></li>
-            </ol>
-            <!--设置轮播的图片-->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <a href="##"><img src="./images/log.png" alt="cat1"></a>
+    <div class="container">
+        <!-- 行 -->
+        <div class="row" style="padding-left: 30px;">
+            <!-- 左侧 -->
+            <div class="left col-md-5">
+                <!-- 视频 -->
+                <div class="zy_media">
+                    <video poster="./images/717fbf4dc5edc05132c919a2c3ba1cb.jpg" data-config='{"mediaTitle": "《热门推荐》--光明顶论坛"}'>
+                        <source src="./images/4f568d338cc9ecc7eaa8fef2b11d0dd2.mp4" type="video/mp4" />
+                        您的浏览器不支持HTML5视频
+                    </video>
                 </div>
-                <div class="item">
-                    <a href="##"><img src="./images/奥特曼1.jpg" alt="cat2"></a>
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div>
+                            <img src="https://img-bss.csdn.net/1612409459906.png" alt="">
+                        </div>
+                        <div>
+                            <img src="https://img-bss.csdn.net/1612407491570.png" alt="">
+                        </div>
+                        <div>
+                            <img src="https://img-bss.csdn.net/1612341108191.png" alt="">
+                        </div>
+                    </div>
                 </div>
-                <div class="item">
-                    <a href="##"><img src="./images/轮播图（1）.jpg" alt="cat3"></a>
-                </div>
-            </div>
-            <a class="left carousel-control" href="#slidershow" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="right carousel-control" href="#slidershow" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-        </div>
-        <!-- 标签页 -->
-        <div class="The-label">
-
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">热帖</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">娱乐</a>
-                </li>
-                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">杂谈</a>
-                </li>
-                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">经济</a>
-                </li>
-                <li role="presentation"><a href="#military" aria-controls="military" role="tab" data-toggle="tab">军事</a>
-                </li>
-                <li role="presentation"><a href="#tourism" aria-controls="tourism" role="tab" data-toggle="tab">旅游</a>
-                </li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="home">
+                <!-- 排行榜 -->
+                <div class="top" id="top">
+                    <h4><i class="glyphicon glyphicon-king"></i>热门话题排行榜</h4>
                     <ul>
-                        <li>
-                            <h3><a href="file:///C:/Users/%E5%86%B2%E5%86%B2%E5%86%B2%EF%BC%8C%E5%A5%A5%E9%87%8C%E7%BB%99/Desktop/%E9%A1%B9%E7%9B%AE/%E6%88%91%E8%A6%81%E7%9B%B8%E4%BF%A1%E5%85%89/ATM_light/web_client/creation.html">标题</a>
-                            </h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
+                        <script type="text/html" id="html-top">
+                            {{each data}}
+                            <li class="num" data-hide={{$value.id}}>
+                                <i>{{$index+1}}</i>
+                                <span>&nbsp;🔥&nbsp;&nbsp;&nbsp;{{$value.tname}}</span>
+                            </li>
+                            {{/each}}
+                        </script>
                     </ul>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="profile">
-                    <ul>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                    </ul>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="messages">
-                    <ul>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                    </ul>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="settings">
-                    <ul>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                    </ul>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="military">
-                    <ul>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                    </ul>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="tourism">
-                    <ul>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                        <li>
-                            <h3><a href="#">标题</a></h3>
-                            <p>内容</p>
-                            <span><a href="#">用户名</a>/ <a href="#">分类</a></span>
-                        </li>
-                    </ul>
+                <!-- 日历 -->
+                <div class="col-sm-3 dateTime">
+                    <div id="DeadlineTime"></div>
+                    <i class="fa fa-caret-down cursor creat-down-date"></i>
                 </div>
             </div>
 
+            <!-- 右侧 -->
+            <div class="right col-md-6">
+                <!-- 按钮组 -->
+                <div class="btn-group" id="btn-group">
+                    <!-- 娱乐按钮 -->
+                    <div class="btn btn-recreat" id="btn-recreat">娱乐</div>
+                    <!-- 杂谈按钮 -->
+                    <div class="btn btn-talk" id="btn-talk">杂谈</div>
+                    <!-- 经济按钮 -->
+                    <div class="btn btn-eco" id="btn-eco">经济</div>
+                    <!-- 军事按钮 -->
+                    <div class="btn btn-mil" id="btn-mil">军事</div>
+                    <!-- 旅游按钮 -->
+                    <div class="btn btn-tour" id="btn-tour">旅游</div>
+                </div>
+                <div class="box-show">
+                    <!-- 娱乐盒子 -->
+                    <div class="box box-recreat" id="box-recreat" style="display: none;">
+                        <ul>
+                            <script type="text/html" id="html-recreat">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:;">
+                                            <img src="https://vthumb.ykimg.com/054101015FE1F01F079382A5CE29B604" alt=" ">
+                                            <div class="right ">
+                                                <p>{{$value.tcontent}}</p>
+                                                <div class="data">
+                                                    <div class="time">
+                                                        <i class="glyphicon glyphicon-time"></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit">
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like">
+                                                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+                        </ul>
+                    </div>
+                    <!-- 杂谈盒子 -->
+                    <div class="box btn-talk" id="box-talk" style="display: none;">
+                        <ul>
+                            <script type="text/html" id="html-talk">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag ">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:; ">
+                                            <img src="https://vthumb.ykimg.com/054101015F857345047BD7A2651D80AB" alt=" ">
+                                            <div class="right ">
+                                                <p>{{$value.tcontent}}</p>
+                                                <div class="data ">
+                                                    <div class="time ">
+                                                        <i class="glyphicon glyphicon-time "></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit ">
+                                                        <i class="glyphicon glyphicon-eye-open "></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like ">
+                                                        <i class="glyphicon glyphicon-thumbs-up "></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+                        </ul>
+                    </div>
+                    <!-- 经济盒子 -->
+                    <div class="box box-eco" id="box-eco">
+                        <ul>
+                            <script type="text/html" id="html-eco">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:;">
+                                            <img src="https://m.ykimg.com/054106015FF9B61600000168E2093827?x-oss-process=image/resize,w_290/interlace,1/quality,Q_80/sharpen,100" alt=" ">
+                                            <div class="right">
+                                                <p>{{$value.tcontent}}</p>
+                                                <div class="data">
+                                                    <div class="time">
+                                                        <i class="glyphicon glyphicon-time "></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit">
+                                                        <i class="glyphicon glyphicon-eye-open "></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like">
+                                                        <i class="glyphicon glyphicon-thumbs-up "></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+                        </ul>
+                    </div>
+                    <!-- 军事盒子 -->
+                    <div class="box btn-mil" id="box-mil" style="display: none;">
+                        <ul>
+                            <script type="text/html" id="html-mil">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:; ">
+                                            <img src="https://vthumb.ykimg.com/054106015FDCC62200000154A90BAE72" alt=" ">
+                                            <div class="right ">
+                                                <p>{{$value.tcontent}}</p>
+                                                <div class="data">
+                                                    <div class="time">
+                                                        <i class="glyphicon glyphicon-time"></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit">
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like">
+                                                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+
+                        </ul>
+                    </div>
+                    <!-- 旅游盒子 -->
+                    <div class="box btn-tour" id="box-tour" style="display: none;">
+                        <ul>
+                            <script type="text/html" id="html-tour">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:;">
+                                            <img src="https://m.ykimg.com/054101015FFAAFE3047BD7A9763BA20D?x-oss-process=image/resize,w_290/interlace,1/quality,Q_80/sharpen,100" alt=" ">
+                                            <div class="right ">
+                                                <p>{{$value.tcontent}}</p>
+                                                <div class="data ">
+                                                    <div class="time">
+                                                        <i class="glyphicon glyphicon-time"></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit">
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like ">
+                                                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- 左边栏 -->
-        <div class="sidebar">
-            <ul>
-                <h3>今日热点</h3>
-                <a href="#"><img src="./images/广告.jpg" alt=""></a>
-                <li><a href="#">如何完整准确全面贯彻新发展理念？习近平部署 </a></li>
-                <li><a href="#"> 用新动能推动新发展 完整准确全面贯彻新发展理念</a></li>
-                <li><a href="#">就地过年过好年 各地推出暖心举措保障就地过年</a></li>
-                <li><a href="#">财政政策如何助力“十四五”开好局？专家解答来了</a></li>
-                <li><a href="#"> 外媒:"牛角男"称愿在弹劾案中作证感觉被特朗普"出卖"</a></li>
-                <li><a href="#"> “打人书记”被免，新任济源市委书记：从严正己修身</a></li>
-                <li><a href="#">北京昨日新增1例本地确诊病例 在大兴天宫院</a></li>
-                <li class="and"><a href="#">了解更多 >></a></li>
-            </ul>
-
+    </div>
+    <div class="footer">
+        <div class="one">
+            <a href="javascript:;">关于我们</a>
+            <a href="javascript:;">招纳贤士</a>
+            <a href="javascript:;">广告服务</a>
+            <a href="javascript:;">开发助手</a>
+            <a href="javascript:;"><i class="layui-icon">&#xe678;</i>400-618-4000</a>
+            <a href="javascript:;"><i class="layui-icon">&#xe618;</i>inlettkeji.cn</a>
+            <a href="javascript:;"><i class="layui-icon">&#xe626;</i>在线客服</a>
+            <a href="javascript:;">工作时间 8:30-22:00</a>
         </div>
-        <!-- 在下边栏 -->
-        <div class="field">
+        <div class="two">
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030143" target="_black">
+                <img src="//g.csdnimg.cn/common/csdn-footer/images/badge.png" alt=""> 公安备案号xx0105020301xx
+            </a>
+            <a href="http://beian.miit.gov.cn/publish/query/indexFirst.action" target="_black">陕ICP备x900465x</a>
+            <a href="https://csdnimg.cn/release/live_fe/culture_license.png" target="_black">陕网文〔2020〕x039-16x号</a>
+            <a href="https://csdnimg.cn/cdn/content-toolbar/csdn-ICP.png" target="_black">经营性网站备案信息</a>
+            <a href="http://www.bjjubao.org/" target="_black">西安互联网违法和不良信息举报中心</a>
+            <a href="http://www.cyberpolice.cn/" target="_black">网络110报警服务</a>
+            <a href="http://www.12377.cn/" target="_black">中国互联网举报中心</a>
+            <a href="https://download.csdn.net/index.php/tutelage/" target="_black">家长监护</a>
+            <a href="https://chrome.google.com/webstore/detail/csdn%E5%BC%80%E5%8F%91%E8%80%85%E5%8A%A9%E6%89%8B/kfkdboecolemdjodhmhmcibjocfopejo?hl=zh-CN" target="_black">Chrome商店下载</a>
+        </div>
+        <div class="three">
             <ul>
-                <li class="li1">
-                    <h3>常去板块</h3>
-                    <td class="td"></td>
-                    <dd class="dd"><a href="#"> 娱乐八卦</a></dd>
-                    <dd><a href="#">天涯杂谈</a></dd>
-                    <dd><a href="#">情感天地</a></dd>
-                    <dd><a href="#">国际观察</a></dd>
-                    <dd><a href="#">经济论坛</a></dd>
+                <li>©1999-2021西安英莱特信息科技有限公司</li>
+                <li>
+                    <a href="https://www.csdn.net/company/index.html#statement" target="_black">版权与免责声明</a>
                 </li>
-                <li class="li2">
-                    <h3>社区公告</h3>
-                    <dd><a href="#">如何完整准确全面贯彻新发展理念？习近平部署 </a></dd>
-                    <dd><a href="#"> 用新动能推动新发展 完整准确全面贯彻新发展理念</a></dd>
-                    <dd><a href="#"> 阳坡村的“新名堂” 新春走基层专题</a></dd>
-                    <dd><a href="#"> 就地过年过好年 各地推出暖心举措保障就地过年</a></dd>
-                    <dd><a href="#"> 财政政策如何助力“十四五”开好局？专家解答来了</a></dd>
-                    <dd class="and"><a href="#">了解更多 》</a></dd>
-
-
+                <li>
+                    <a href="https://blog.csdn.net/blogdevteam/article/details/90369522" target="_black">版权申诉</a>
                 </li>
-                <li></li>
             </ul>
         </div>
     </div>
 
 
-
-
-
     <!-- js导入 -->
-    <script src="./assets/bootstrap/js/jquery.min.js"></script>
-    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./assets/layui-v2.5.7/layui.all.js"></script>
-    <script src="./assets/layui-v2.5.7/layui.js"></script>
-    <script src="./assets/baseAPI.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./assets/jQuery-v3.5.1/jquery-3.5.1.min.js "></script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js "></script>
+    <script src="./assets/layui-v2.5.7/layui.all.js "></script>
+    <script src="./assets/layui-v2.5.7/layui.js "></script>
+    <script src="./assets/baseAPI.js "></script>
+    <script src="./assets/zyMedia-master/zy.media.min.js"></script>
+    <script src="./assets/template-web.js"></script>
+    <script src="./js/index.js "></script>
+    <script>
+        zymedia('video', {
+            preload: 'none',
+            autoplay: true,
+            autoLoop: true,
+        })
+        layui.use('carousel', function() {
+            var carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1',
+                width: '35%', //设置容器宽度
+                height: '278px',
+                arrow: 'none', //始终显示箭头
+                autoplay: true,
+                //,anim: 'updown' //切换动画方式
+            });
+            layui.use('laydate', function() {
+                var laydate = layui.laydate;
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#DeadlineTime', //指定元素
+                    show: true,
+                    trigger: 'click', //采用click弹出
+                    type: 'datetime',
+                    showBottom: false,
+                    zIndex: 9999,
+                    position: "static",
+                    calendar: true
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

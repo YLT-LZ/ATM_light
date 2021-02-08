@@ -1,0 +1,169 @@
+body {
+    background-color: #eeee;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+    background: url(../../images/bg.gif);
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+h3.nick {
+    font-size: 26px;
+    font-weight: bold;
+    padding-left: 100px;
+    letter-spacing: 2px;
+}
+
+h3.nick a {
+    color: #333;
+    text-decoration: none;
+}
+
+h3.nick a:hover {
+    color: #333;
+}
+
+div.split {
+    padding-top: 10px;
+}
+
+div.split div {
+    float: left;
+    font-size: 16px;
+}
+
+div.split div:nth-last-of-type(2) {
+    padding-bottom: 15px;
+}
+
+div.split div:nth-last-of-type(2) a {
+    font-weight: 800;
+    text-shadow: 0px 2px 2px #d1d1d1;
+    padding: 20px 20px 15px;
+    color: #7e7575;
+}
+
+div.split div:nth-last-of-type(2) a:hover {
+    text-decoration: none;
+    color: #7e7575;
+    background: #cccc;
+}
+
+div.split div:nth-last-of-type(1) {
+    float: right;
+}
+
+div.split div:nth-last-of-type(1) span:last-child {
+    padding-right: 30px;
+}
+
+div.split div:nth-last-of-type(1) span i {
+    padding: 0 5px;
+}
+
+div.row {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+div.row .left {
+    height: 100%;
+}
+
+div.row .right {
+    height: 100%;
+    margin-left: 40px;
+}
+
+div.row .right .notice {
+    height: 220px;
+    text-align: left;
+    padding: 30px 0px 10px 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px #ddd;
+}
+
+div.row .right .notice h4 {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+div.row .right .notice p {
+    font-size: 13px;
+}
+
+.layui-btn-group button:nth-child(1) {
+    background: #009688;
+    color: #ffff;
+}
+
+.layui-btn-group button:nth-child(2) {
+    background: #FF5722;
+    color: #ffff;
+}
+
+.layui-btn-group button i:hover {
+    color: #ffff;
+}
+
+div.calendar {
+    margin-top: 40px;
+}
+
+div.left h4.title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+div.left div.content {
+    padding-top: 10px;
+}
+
+div.layui-main {
+    text-align: center;
+}
+
+div.layui-card {
+    margin-top: 60px;
+}
+
+div.layui-input-block {
+    margin: 0;
+}
+
+#comment ul li {
+    width: 750px;
+    border-bottom: 1px solid #ccc;
+    padding: 30px 0;
+}
+
+#comment ul li .nick {
+    color: blueviolet;
+    font-weight: 600;
+}
+
+#comment ul li .nick-value {
+    padding: 4px 0px 4px 30px;
+    overflow-wrap: break-word;
+    color: rgb(117, 113, 113);
+    font-size: 8px;
+}
+
+#comment ul li .nick-time {
+    float: right;
+    padding-right: 10px;
+}
+
+#comment ul li i {
+    padding-right: 5px;
+}
+
+div.layui-card-body {
+    background: rgb(250, 247, 247);
+}

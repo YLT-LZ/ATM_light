@@ -36,8 +36,15 @@ const aidEmail = joi.object({
     aemail: joi.string().required().pattern(/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/).error(new Error("管理员邮箱格式有误！")),
 });
 
+// 对文章id验证
+const cardID = joi.object({
+    cardID: joi.number().integer().required().min(1).error(new Error("帖子ID格式有误！"))
+});
 
-
+// 对作者id验证
+const authorID = joi.object({
+    authorID: joi.number().integer().required().min(1).error(new Error("作者ID格式有误！"))
+});
 
 // 在exprots对象下创建schema属性，用于存放表单验证的规则
 module.exports.schema = {
@@ -49,10 +56,14 @@ module.exports.schema = {
     alogid: alogid,
     // 验证管理员账号和邮箱
     aidEmail: aidEmail,
+    // 验证用户的文章id
+    cardID: cardID,
+    // 验证作者的id
+    authorID: authorID
 };
 
 // 在exports下对象下创建validate属性函数，用于对客户端响应的数据验证后的结果进行解构
-module.exports.validate = function (data, schema) {
+module.exports.validate = function(data, schema) {
     // 对传入的数据进行数据验证，并将验证后的结果进行解构
     let { error, value } = schema.validate(data);
     // 判断解构后的异常字符串是否不为空
@@ -60,4 +71,4 @@ module.exports.validate = function (data, schema) {
         // 如果不为空则返回异常字符串
         return error;
     }
-}
+};

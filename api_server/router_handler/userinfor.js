@@ -12,7 +12,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../config");
 
 // 【忘记密码】设置新密码的路由处理函数
-module.exports.fsetpwd = function (req, res) {
+module.exports.fsetpwd = function(req, res) {
     // 如果user为空
     if (!req.user) {
         return res.ck("身份验证失败，请重新找回密码！");
@@ -25,7 +25,7 @@ module.exports.fsetpwd = function (req, res) {
     const newpwd = bcrypt.hashSync(req.body.newpwd, 10);
     // 书写修改密码的sql代码
     const sql = "UPDATE atm_admin SET apwd=? WHERE alogid=?";
-    db.query(sql, [newpwd, req.user.alogid], function (err, result) {
+    db.query(sql, [newpwd, req.user.alogid], function(err, result) {
         if (err) {
             return res.ck(err);
         }
@@ -38,7 +38,7 @@ module.exports.fsetpwd = function (req, res) {
 };
 
 // 【忘记密码】验证邮箱验证码的路由处理函数 
-module.exports.fpwdCode = function (req, res) {
+module.exports.fpwdCode = function(req, res) {
     // 对管理员的邮箱再次进行验证
     const error = checkym.validate(req.body, checkym.schema.aemail);
     if (error) {
@@ -181,7 +181,7 @@ module.exports.yzecode = (req, res) => {
         msg: "邮箱动态码验证成功!",
         token: tokenStr
     });
-}
+};
 // 重置密码的路由处理函数
 module.exports.resetpwd = (req, res) => {
     if (req.user.islogin) {
@@ -215,4 +215,131 @@ module.exports.resetpwd = (req, res) => {
             res.ck("重置密码成功！", 0);
         });
     });
-}
+};
+
+// 用户页面获取该用户粉丝总数的路由处理函数
+module.exports.getFansNum = (req, res) => {
+    // 书写sql代码
+    const sql = "SELECT COUNT(*) AS num FROM atm_fans WHERE uid=? AND ustatus=0";
+    // 执行sql代码
+    db.query(sql, req.user.id, function(err, results) {
+        // 如果数据库异常，则响应异常对象
+        if (err) {
+            return res.ck(err);
+        }
+        return res.send({
+            status: 0,
+            msg: "获取该用户粉丝数量成功!",
+            data: results
+        });
+    });
+};
+
+// 用户页面获取该用户关注总数的路由处理函数
+module.exports.getFocusNum = (req, res) => {
+    // 书写sql代码
+    const sql = "SELECT COUNT(*) AS num FROM atm_focus WHERE uid=? AND ustatus=0";
+    // 执行sql代码
+    db.query(sql, req.user.id, function(err, results) {
+        // 如果数据库异常，则响应异常对象
+        if (err) {
+            return res.ck(err);
+        }
+        return res.send({
+            status: 0,
+            msg: "获取该用户帖子数量成功!",
+            data: results
+        });
+    });
+};
+
+// 用户页面获取该用户帖子总数的路由处理函数
+module.exports.getCardNum = (req, res) => {
+    // 书写sql代码
+    const sql = "SELECT COUNT(*) AS num FROM atm_book WHERE author_id=? AND tisdel=0";
+    // 执行sql代码
+    db.query(sql, req.user.id, function(err, results) {
+        // 如果数据库异常，则响应异常对象
+        if (err) {
+            return res.ck(err);
+        }
+        return res.send({
+            status: 0,
+            msg: "获取该用户帖子数量成功!",
+            data: results
+        });
+    });
+};
+
+// 用户页面获取该帖子评论总数的路由处理函数
+module.exports.getCommentNum = (req, res) => {
+    // 书写sql代码
+    const sql = "SELECT COUNT(*) AS num FROM atm_comments WHERE authorid=? AND isdel=0";
+    // 执行sql代码
+    db.query(sql, req.user.id, function(err, results) {
+        // 如果数据库异常，则响应异常对象
+        if (err) {
+            return res.ck(err);
+        }
+        return res.send({
+            status: 0,
+            msg: "获取该用户帖子数量成功!",
+            data: results
+        });
+    });
+};
+
+// 获取当前用户全部帖子列表的路由处理函数
+module.exports.getCardAll = (req, res) => {
+    // 书写sql代码
+    const sql = `SELECT atm_book.id,atm_book.tcontent,atm_book.tname,atm_book.ttime,atm_user.unick,
+ atm_type.type FROM atm_book INNER JOIN atm_user on atm_book.author_id = atm_user.id INNER JOIN atm_type
+  on atm_book.ttype = atm_type.id
+  WHERE tisdel=0 ORDER BY atm_book.ttime ${req.query.sort} `;
+    // 获取sql代码
+    db.query(sql, function(err, results) {
+        // 如果数据库异常
+        if (err) {
+            // 响应并返回异常对象
+            return res.ck(err);
+        }
+        // 如果结果集中的长度小于等于0
+        if (results.length <= 0) {
+            return res.ck("该用户没有发布任何帖子!");
+        }
+        return res.send({
+            status: 0,
+            msg: "获取帖子列表成功!",
+            data: results
+        });
+    });
+};
+
+// 根据用户id和帖子id删除帖子的路由处理函数
+module.exports.delcardByidAnduid = (req, res) => {
+    // 通过组包获取所需要的数据
+    const body = { id: req.body.id, author_id: req.user.id };
+    // 对数据进行验证
+    const error = checkym.validate(body, checkym.schema.delCard);
+    // 如果验证结果不为空
+    if (error) {
+        // 响应验证结果
+        return res.ck(error);
+    }
+    // 书写修改数据的sql代码
+    var sql = "UPDATE atm_book SET tisdel=1 WHERE id=? AND author_id=?";
+    // 执行sql代码
+    db.query(sql, [body.id, body.author_id], function(err, results) {
+        // 如果sql代码执行异常
+        if (err) {
+            // 则响应异常对象
+            return res.ck(err);
+        }
+        // 如果结果集中受影响的行数不为1
+        if (results.affectedRows !== 1) {
+            // 则响应提示信息
+            return res.ck("删除失败！");
+        }
+        return res.ck("删除成功", 0);
+    });
+};

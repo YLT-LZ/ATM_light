@@ -111,6 +111,13 @@ $(function() {
                     icon: 1,
                     content: '登录成功！',
                     end: function() {
+                        // 如果本地中的评论数据存在则说明是要评论
+                        if (localStorage.getItem("isComment")) {
+                            // 先清除本地中评论数据
+                            localStorage.removeItem("isComment");
+                            // 跳转到查看文章评论页面
+                            return location.href = "./page/user/user_lookcard.html";
+                        }
                         // 并跳转到主页
                         location.href = './index.html';
                     }

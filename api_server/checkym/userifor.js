@@ -30,6 +30,13 @@ const setpwd = joi.object({
     redopwd: joi.string().required().valid(joi.ref("newpwd")).error(new Error("重复密码和新密码不一致！"))
 });
 
+
+// 删除帖子：验证帖子id和作者id
+const delCard = joi.object({
+    id: joi.number().integer().required().min(1).error(new Error("帖子ID格式有误！")),
+    author_id: joi.number().integer().required().min(1).error(new Error("作者ID格式有误！"))
+});
+
 // 在exprots对象下创建schema属性，用于存放表单验证的规则
 module.exports.schema = {
     // 注册验证
@@ -37,7 +44,9 @@ module.exports.schema = {
     // 验证管理员邮箱
     aemail: aemail,
     // 验证新密码和旧密码
-    setpwd: setpwd
+    setpwd: setpwd,
+    // 验证帖子ID和作者ID
+    delCard: delCard
 };
 
 // 在exports下对象下创建validate属性函数，用于对客户端响应的数据验证后的结果进行解构

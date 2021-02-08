@@ -23,5 +23,9 @@ router.post('/getuser', routerHandler.getuser);
 router.post('/getecode', routerHandler.getecode);
 // 申诉接口
 router.post('/appeal', routerHandler.appeal);
+// 根据文章id获取文章的的路由接口
+router.get("/getCardByCardid", routerHandler.getCardByCardid);
+// 根据作者id获取文章的路由接口
+router.get("/getCardByAuthorid", routerHandler.getCardByAuthorid);
 // 将路由对象共享出去
 module.exports = router;

@@ -1,0 +1,177 @@
+body {
+    background: url(../../images/bg.gif);
+}
+
+div.row {
+    display: flex;
+    justify-content: center;
+}
+
+div.row .left {
+    padding: 0;
+    color: #fff;
+}
+
+div.container .center>div.right {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+div.row .right {
+    background: #fff;
+    margin-left: 30px;
+}
+
+div.row .left .notice {
+    position: fixed;
+    top: 210px;
+    width: 284px;
+    height: 220px;
+    text-align: left;
+    padding: 30px 0px 10px 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px #ddd;
+}
+
+div.row .left .notice h4 {
+    margin-bottom: 15px;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: 800;
+    text-shadow: 0px 2px 2px #ccc;
+}
+
+div.row .left .notice p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 15px;
+    padding: 5px;
+}
+
+div.row .left .notice p i {
+    padding-left: 5px;
+    font-size: 12px;
+}
+
+div.postList ul li {
+    background: rgba(245, 245, 245, .9);
+    padding: 10px;
+    position: relative;
+}
+
+div.postList ul li .right {
+    background: rgba(245, 245, 245, .9);
+}
+
+div.postList ul li div:first-child {
+    padding-bottom: 4px;
+}
+
+#type {
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    background-color: #fc5531;
+    color: #fff5f2;
+    border-radius: 2px;
+}
+
+div.postList {
+    margin-top: 20px;
+}
+
+div.postList ul li div:first-child h4 {
+    color: #fc5531;
+    display: inline-block;
+    font-size: 15px;
+    width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transform: translateY(3px);
+}
+
+div a {
+    text-decoration: none;
+    font-style: normal;
+    display: flex;
+}
+
+div a:hover {
+    text-decoration: none;
+    font-style: normal;
+}
+
+div a img {
+    width: 180px;
+    height: 100px;
+}
+
+div a div.right {
+    padding-left: 15px;
+    flex: 7;
+}
+
+div a div.right p {
+    color: rgb(126, 124, 124);
+    width: 300px;
+    height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+div a div.right .data {
+    padding-top: 40px;
+}
+
+div a div.right .data div {
+    font-size: 12px;
+    float: left;
+}
+
+div a div.right .data div:nth-child(n+2) {
+    padding-left: 50px;
+}
+
+div a div.right .data div.like {
+    color: red;
+}
+
+
+/* 右侧页脚 */
+
+div.right-footer div {
+    font-size: 12px;
+    text-align: center;
+}
+
+div.right-footer div p:last-child {
+    padding: 10px 0 20px;
+}
+
+
+/* 其他功能 */
+
+.hover {
+    /* 宽高都放大1.03倍 */
+    transform: scale(1.03);
+}
+
+#postList ul li:hover {
+    background-color: #cccc;
+}
+
+#postList ul li:hover .right {
+    background-color: #d6d6d6;
+}
+
+div.top-ad {
+    margin-bottom: 10px;
+}

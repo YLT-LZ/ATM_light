@@ -1,0 +1,248 @@
+body {
+    background-color: #ffffff;
+    background: url(../../images/beijing.jpg) no-repeat fixed;
+    background-size: 100% 100%;
+}
+
+div.top-ad {
+    width: 1082px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+div.top-ad a {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: rgba(24, 22, 22, 0.986);
+}
+
+div.top-ad a:hover {
+    color: rgba(24, 22, 22, 0.986);
+}
+
+div.center {
+    display: flex;
+    justify-content: center;
+}
+
+div.center .left {
+    height: 100%;
+    text-align: center;
+    position: relative;
+}
+
+div.center .right {
+    margin-left: 10px;
+    height: 100%;
+    position: relative;
+}
+
+div.center .left h3 {
+    display: inline-block;
+    padding: 10px;
+    background-color: rgb(32, 216, 94);
+    position: fixed;
+    left: 170px;
+    top: 150px;
+    color: #ffffff;
+}
+
+div.center .left .dateTime {
+    position: fixed;
+    left: 80px;
+    top: 210px;
+}
+
+div.font {
+    padding: 20px;
+}
+
+div.font div.col-xs-3 {
+    text-align: center;
+    color: #ffffff;
+    background-color: rgba(187, 132, 174, 0.6);
+    border: 2px solid rgba(255, 255, 255, .3);
+}
+
+div.font div.col-xs-3 span {
+    font-size: 30px;
+    font-family: "Times New Roman", "Times, serif";
+}
+
+div.font div.col-xs-3 i {
+    font-size: 20px;
+    font-family: "楷体";
+    color: #270f5c;
+}
+
+div.font div.col-xs-3 div.line {
+    font-size: 15px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #f1f1f1;
+}
+
+div.postList ul li {
+    background: rgba(245, 245, 245, .9);
+    padding: 10px;
+    position: relative;
+}
+
+div.postList ul li div:first-child {
+    padding-bottom: 4px;
+}
+
+#type {
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    background-color: #fc5531;
+    color: #fff5f2;
+    border-radius: 2px;
+}
+
+div.postList {
+    margin-top: 20px;
+}
+
+div.postList ul li div:first-child h4 {
+    color: #fc5531;
+    display: inline-block;
+    font-size: 15px;
+    width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transform: translateY(3px);
+}
+
+div a {
+    text-decoration: none;
+    font-style: normal;
+    display: flex;
+}
+
+div a:hover {
+    text-decoration: none;
+    font-style: normal;
+}
+
+div a img {
+    width: 180px;
+    height: 100px;
+}
+
+div a div.right {
+    padding-left: 15px;
+    flex: 7;
+}
+
+div a div.right p {
+    color: rgb(126, 124, 124);
+    width: 300px;
+    height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+div a div.right .data {
+    padding-top: 40px;
+}
+
+div a div.right .data div {
+    font-size: 12px;
+    float: left;
+}
+
+div a div.right .data div:nth-child(n+2) {
+    padding-left: 50px;
+}
+
+div a div.right .data div.like {
+    color: red;
+}
+
+div.layui-btn-group {
+    position: absolute;
+    left: 600px;
+    top: 100px;
+}
+
+div.footer {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #f8f8f8;
+}
+
+div.footer div {
+    text-align: center;
+    color: #a69aaa;
+}
+
+div.footer div a {
+    color: #a69aaa;
+    text-decoration: none;
+    display: inline-block;
+}
+
+div.footer div a i {
+    padding-right: 5px;
+}
+
+div.footer div.one {
+    padding-top: 30px;
+}
+
+div.footer div.one a:nth-child(n+1) {
+    padding: 10px 10px;
+}
+
+div.footer div.two {
+    font-size: 12px;
+    text-align: center;
+}
+
+div.footer div.two a:nth-child(n+1) {
+    padding: 2px 5px;
+}
+
+div.footer div.two a img {
+    width: 14px;
+    height: 14px;
+}
+
+div.footer div.three ul {
+    padding: 5px 0 30px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+div.footer div.three ul li {
+    float: left;
+}
+
+div.footer div.three ul li:nth-child(n+1) {
+    padding-left: 20px;
+}
+
+#postList img {
+    /* 设置过渡 */
+    transition: transform 0.1s;
+}
+
+.hover {
+    /* 宽高都放大1.03倍 */
+    transform: scale(1.03);
+}
+
+#postList ul li:hover {
+    background-color: #cccc;
+}
