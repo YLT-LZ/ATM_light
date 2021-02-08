@@ -73,5 +73,24 @@ router.post('/CXTRmyfans', routerHandler.CXTRmyfans)
 router.post('/CXTRfollow', routerHandler.CXTRfollow)
 // 获取用户黑名单的路由处理函数
 router.post('/CXTRblacklist', routerHandler.CXTRblacklist)
+
+// 用户页面获取该用户粉丝总数的路由接口
+router.get("/getFansNum", routerHandler.getFansNum);
+
+// 用户页面获取该用户关注总数的路由接口
+router.get("/getFocusNum", routerHandler.getFocusNum);
+
+// 用户页面获取该用户帖子总数的路由接口
+router.get("/getCardNum", routerHandler.getCardNum);
+
+// 用户页面获取该帖子评论总数的路由接口
+router.get("/getCommentNum", routerHandler.getCommentNum);
+
+// 获取用户全部文章的路由接口
+router.get("/getCardAll", routerHandler.getCardAll);
+
+// 根据作者id和帖子编号删除帖子的路由接口
+router.post("/delcardByidAnduid", routerHandler.delcardByidAnduid);
+
 // 将路由对象共享出去
 module.exports = router;

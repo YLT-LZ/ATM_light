@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="shortcut icon" href="./favicon (4).ico">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/layui-v2.5.7/css/layui.css">
+    <link rel="stylesheet" href="./assets/zyMedia-master/zy.media.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body class="body">
+    <!-- 导航栏 -->
+    <div class="head">
+        <nav class="navbar navbar-default" style="border-radius: 0px; margin-bottom: 0px;">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- 导航栏第一个 -->
+                    <a class="navbar-brand" href="">光明顶</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <!-- 导航栏 第二个 -->
+                        <li class="active"><a href="javascript:;">首页<span class="sr-only">(current)</span></a></li>
+                    </ul>
+                    <form class="navbar-form navbar-left">
+                        <!-- 导航栏  搜索框 -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="control" placeholder="搜索帖子">
+                        </div>
+                        <button type="submit" class="btn btn-default">开始搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- 导航栏 第五个 -->
+                        <li id="login"><a href="#">登录</a></li>
+                        <li id="register"><a href="#">注册</a></li>
+                        <li id="dropdown">
+                            <!-- 导航栏 个人中心 -->
+                            <a href="#" class="dropdown-toggle" id="center" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="./page/user/basic-info.html">个人资料</a></li>
+                                <li><a href="./page/user/user_pub.html">写帖子</a></li>
+                                <li><a href="./page/user/user_repository.html">我的资源库</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="./page/user/userList.html">会员中心</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </div>
+    <!-- 顶部广告 -->
+    <div style="margin-bottom: 10px; padding: 0 48px;">
+        <a href="http://www.baidu.com"><img src="https://img-bss.csdn.net/1612491964341.png" alt=""
+                style="width: 100%;height: 90px;"></a>
+    </div>
+    <!-- 版心 -->
+    <div class="container">
+        <!-- 行 -->
+        <div class="row" style="padding-left: 30px;">
+            <!-- 左侧 -->
+            <div class="left col-md-5">
+                <!-- 视频 -->
+                <div class="zy_media">
+                    <video poster="./images/717fbf4dc5edc05132c919a2c3ba1cb.jpg"
+                        data-config='{"mediaTitle": "《热门推荐》--光明顶论坛"}'>
+                        <source src="./images/4f568d338cc9ecc7eaa8fef2b11d0dd2.mp4" type="video/mp4" />
+                        您的浏览器不支持HTML5视频
+                    </video>
+                </div>
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div>
+                            <img src="https://img-bss.csdn.net/1612409459906.png" alt="">
+                        </div>
+                        <div>
+                            <img src="https://img-bss.csdn.net/1612407491570.png" alt="">
+                        </div>
+                        <div>
+                            <img src="https://img-bss.csdn.net/1612341108191.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <!-- 排行榜 -->
+                <div class="top" id="top">
+                    <h4><i class="glyphicon glyphicon-king"></i>热门话题排行榜</h4>
+                    <ul>
+                        <script type="text/html" id="html-top">
+                            {{each data}}
+                            <li class="num" data-hide={{$value.id}}>
+                                <i>{{$index+1}}</i>
+                                <span>&nbsp;🔥&nbsp;&nbsp;&nbsp;{{$value.tname}}</span>
+                            </li>
+                            {{/each}}
+                        </script>
+                    </ul>
+                </div>
+                <!-- 日历 -->
+                <div class="col-sm-3 dateTime">
+                    <div id="DeadlineTime"></div>
+                    <i class="fa fa-caret-down cursor creat-down-date"></i>
+                </div>
+            </div>
+
+            <!-- 右侧 -->
+            <div class="right col-md-6">
+                <!-- 按钮组 -->
+                <div class="btn-group" id="btn-group">
+                    <!-- 娱乐按钮 -->
+                    <div class="btn btn-recreat" id="btn-recreat">娱乐</div>
+                    <!-- 杂谈按钮 -->
+                    <div class="btn btn-talk" id="btn-talk">杂谈</div>
+                    <!-- 经济按钮 -->
+                    <div class="btn btn-eco" id="btn-eco">经济</div>
+                    <!-- 军事按钮 -->
+                    <div class="btn btn-mil" id="btn-mil">军事</div>
+                    <!-- 旅游按钮 -->
+                    <div class="btn btn-tour" id="btn-tour">旅游</div>
+                </div>
+                <div class="box-show">
+                    <!-- 娱乐盒子 -->
+                    <div class="box box-recreat" id="box-recreat" style="display: none;">
+                        <ul>
+                            <script type="text/html" id="html-recreat">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:;">
+                                            <img src="https://vthumb.ykimg.com/054101015FE1F01F079382A5CE29B604" alt=" ">
+                                            <div class="right ">
+                                                <p>{{$value.tcontent | replace}}</p>
+                                                <div class="data">
+                                                    <div class="time">
+                                                        <i class="glyphicon glyphicon-time"></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit">
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like">
+                                                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+                        </ul>
+                    </div>
+                    <!-- 杂谈盒子 -->
+                    <div class="box btn-talk" id="box-talk" style="display: none;">
+                        <ul>
+                            <script type="text/html" id="html-talk">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag ">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:; ">
+                                            <img src="https://vthumb.ykimg.com/054101015F857345047BD7A2651D80AB" alt=" ">
+                                            <div class="right ">
+                                                <p>{{$value.tcontent | replace}}</p>
+                                                <div class="data ">
+                                                    <div class="time ">
+                                                        <i class="glyphicon glyphicon-time "></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit ">
+                                                        <i class="glyphicon glyphicon-eye-open "></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like ">
+                                                        <i class="glyphicon glyphicon-thumbs-up "></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+                        </ul>
+                    </div>
+                    <!-- 经济盒子 -->
+                    <div class="box box-eco" id="box-eco">
+                        <ul>
+                            <script type="text/html" id="html-eco">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:;">
+                                            <img src="https://m.ykimg.com/054106015FF9B61600000168E2093827?x-oss-process=image/resize,w_290/interlace,1/quality,Q_80/sharpen,100" alt=" ">
+                                            <div class="right">
+                                                <p>{{$value.tcontent | replace}}</p>
+                                                <div class="data">
+                                                    <div class="time">
+                                                        <i class="glyphicon glyphicon-time "></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit">
+                                                        <i class="glyphicon glyphicon-eye-open "></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like">
+                                                        <i class="glyphicon glyphicon-thumbs-up "></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+                        </ul>
+                    </div>
+                    <!-- 军事盒子 -->
+                    <div class="box btn-mil" id="box-mil" style="display: none;">
+                        <ul>
+                            <script type="text/html" id="html-mil">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:; ">
+                                            <img src="https://vthumb.ykimg.com/054106015FDCC62200000154A90BAE72" alt=" ">
+                                            <div class="right ">
+                                                <p>{{$value.tcontent | replace}}</p>
+                                                <div class="data">
+                                                    <div class="time">
+                                                        <i class="glyphicon glyphicon-time"></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit">
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like">
+                                                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+
+                        </ul>
+                    </div>
+                    <!-- 旅游盒子 -->
+                    <div class="box btn-tour" id="box-tour" style="display: none;">
+                        <ul>
+                            <script type="text/html" id="html-tour">
+                                {{each data}}
+                                <li data-hide={{$value.id}}>
+                                    <!-- 第一行 -->
+                                    <div>
+                                        <span id="type">{{$value.type}}</span>
+                                        <i id="flag">|</i>
+                                        <h4>{{$value.tname}}</h4>
+                                    </div>
+                                    <!-- 第二行 -->
+                                    <div>
+                                        <a href="javascript:;">
+                                            <img src="https://m.ykimg.com/054101015FFAAFE3047BD7A9763BA20D?x-oss-process=image/resize,w_290/interlace,1/quality,Q_80/sharpen,100" alt=" ">
+                                            <div class="right ">
+                                                <p>{{$value.tcontent | replace}}</p>
+                                                <div class="data ">
+                                                    <div class="time">
+                                                        <i class="glyphicon glyphicon-time"></i>
+                                                        <span>{{$value.ttime | formatTime}}</span>
+                                                    </div>
+                                                    <div class="visit">
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                        <span>{{$value.look}}</span>
+                                                    </div>
+                                                    <div class="like ">
+                                                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                                                        </span>{{$value.praise}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                {{/each}}
+                            </script>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="one">
+            <a href="javascript:;">关于我们</a>
+            <a href="javascript:;">招纳贤士</a>
+            <a href="javascript:;">广告服务</a>
+            <a href="javascript:;">开发助手</a>
+            <a href="javascript:;"><i class="layui-icon">&#xe678;</i>400-618-4000</a>
+            <a href="javascript:;"><i class="layui-icon">&#xe618;</i>inlettkeji.cn</a>
+            <a href="javascript:;"><i class="layui-icon">&#xe626;</i>在线客服</a>
+            <a href="javascript:;">工作时间 8:30-22:00</a>
+        </div>
+        <div class="two">
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502030143" target="_black">
+                <img src="//g.csdnimg.cn/common/csdn-footer/images/badge.png" alt=""> 公安备案号xx0105020301xx
+            </a>
+            <a href="http://beian.miit.gov.cn/publish/query/indexFirst.action" target="_black">陕ICP备x900465x</a>
+            <a href="https://csdnimg.cn/release/live_fe/culture_license.png" target="_black">陕网文〔2020〕x039-16x号</a>
+            <a href="https://csdnimg.cn/cdn/content-toolbar/csdn-ICP.png" target="_black">经营性网站备案信息</a>
+            <a href="http://www.bjjubao.org/" target="_black">西安互联网违法和不良信息举报中心</a>
+            <a href="http://www.cyberpolice.cn/" target="_black">网络110报警服务</a>
+            <a href="http://www.12377.cn/" target="_black">中国互联网举报中心</a>
+            <a href="https://download.csdn.net/index.php/tutelage/" target="_black">家长监护</a>
+            <a href="https://chrome.google.com/webstore/detail/csdn%E5%BC%80%E5%8F%91%E8%80%85%E5%8A%A9%E6%89%8B/kfkdboecolemdjodhmhmcibjocfopejo?hl=zh-CN"
+                target="_black">Chrome商店下载</a>
+        </div>
+        <div class="three">
+            <ul>
+                <li>©1999-2021西安英莱特信息科技有限公司</li>
+                <li>
+                    <a href="https://www.csdn.net/company/index.html#statement" target="_black">版权与免责声明</a>
+                </li>
+                <li>
+                    <a href="https://blog.csdn.net/blogdevteam/article/details/90369522" target="_black">版权申诉</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- js导入 -->
+    <script src="./assets/jQuery-v3.5.1/jquery-3.5.1.min.js "></script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js "></script>
+    <script src="./assets/layui-v2.5.7/layui.all.js "></script>
+    <script src="./assets/layui-v2.5.7/layui.js "></script>
+    <script src="./assets/baseAPI.js "></script>
+    <script src="./assets/zyMedia-master/zy.media.min.js"></script>
+    <script src="./assets/template-web.js"></script>
+    <script src="./js/index.js "></script>
+    <script>
+        zymedia('video', {
+            preload: 'none',
+            autoplay: true,
+            autoLoop: true,
+        })
+        layui.use('carousel', function () {
+            var carousel = layui.carousel;
+            //建造实例
+            carousel.render({
+                elem: '#test1',
+                width: '35%', //设置容器宽度
+                height: '278px',
+                arrow: 'none', //始终显示箭头
+                autoplay: true,
+                //,anim: 'updown' //切换动画方式
+            });
+            layui.use('laydate', function () {
+                var laydate = layui.laydate;
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#DeadlineTime', //指定元素
+                    show: true,
+                    trigger: 'click', //采用click弹出
+                    type: 'datetime',
+                    showBottom: false,
+                    zIndex: 9999,
+                    position: "static",
+                    calendar: true
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

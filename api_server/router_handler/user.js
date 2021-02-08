@@ -50,7 +50,6 @@ module.exports.Afpwd = function (req, res) {
     db.query(sqlstr, [req.body.alogid, req.body.aemail], (err, result) => {
         // 如果数据库异常
         if (err) {
-            console.log(err);
             return res.ck(err);
         }
         // 如果查询到的长度不等于1
@@ -284,7 +283,7 @@ module.exports.getuser = (req, res) => {
             data: results
         });
     });
-}
+};
 // 发送邮件的路由处理函数
 module.exports.getecode = (req, res) => {
     const ecode = require("../common/createcode");
@@ -315,7 +314,7 @@ module.exports.getecode = (req, res) => {
         msg: "邮箱成功接收验证码，有效时间为60s",
         token: tokenStr
     });
-}
+};
 // 申述的路由处理函数
 module.exports.appeal = (req, res) => {
     // 接收表单数据
@@ -333,5 +332,177 @@ module.exports.appeal = (req, res) => {
             return res.ck('该账户未被查封,请转去登录')
         }
         res.ck('申诉已受理', 0)
+    });
+};
+// 根据帖子id获取文章的的路由处理函数
+module.exports.getCardByCardid = (req, res) => {
+    // 对帖子ID进行验证
+    const error = checkym.validate(req.query, checkym.schema.cardID);
+    let value = null;
+    // 如果验证结果不为空
+    if (error) {
+        // 响应验证结果
+        return res.ck(error);
+    }
+    // 书写sql代码
+    const sql = "SELECT atm_book.id,atm_book.tname,atm_book.ttype,atm_book.tcontent,atm_book.ttime,atm_book.tisdel,atm_book.author_id,atm_user.unick  FROM atm_book INNER JOIN atm_user ON atm_user.id=atm_book.author_id	WHERE atm_book.id =?";
+    // 执行sql代码
+    db.query(sql, req.query.cardID, function (err, results) {
+        // 如果sql代码异常
+        if (err) {
+            // 响应异常对象
+            return res.ck(err);
+        }
+        // 如果结果集中的长度不全等于1
+        if (results.length !== 1) {
+            return res.ck("获取该帖子失败！");
+        }
+        // 记录获取到的数据
+        value = results[0];
+        // 拿到作者的id
+        let author_id = value.author_id;
+        // 获取该作者的帖子数量
+        const sql1 = "SELECT COUNT(*) AS card FROM atm_book WHERE tisdel=0 AND author_id=?";
+        db.query(sql1, author_id, function (err, results) {
+            // 如果sql代码异常
+            if (err) {
+                // 响应异常对象
+                return res.ck(err);
+            }
+            // 将获取的数量存入这个对象中
+            value.cardNum = results[0].card;
+            // 获取某个作者的某个帖子的评论数量
+            const sql2 = "SELECT COUNT(*) AS comments FROM atm_comments	WHERE authorid=? AND isdel=0 AND ubookid=?";
+            db.query(sql2, [author_id, req.query.cardID], function (err, results) {
+                // 如果sql代码异常
+                if (err) {
+                    // 响应异常对象
+                    return res.ck(err);
+                }
+                // 将获取的数量存入这个对象中
+                value.commentsNum = results[0].comments;
+                // 获取该用户关注的数量
+                const sql3 = "SELECT COUNT(*) AS focus FROM atm_focus WHERE uid=? AND ustatus=0";
+                db.query(sql3, author_id, function (err, results) {
+                    // 如果sql代码异常
+                    if (err) {
+                        // 响应异常对象
+                        return res.ck(err);
+                    }
+                    // 将获取的数量存入这个对象中
+                    value.focusNum = results[0].focus;
+                    // 获取该用户粉丝的数量
+                    const sql4 = "SELECT COUNT(*) AS fans FROM atm_fans WHERE ustatus=0 AND uid=?";
+                    db.query(sql4, author_id, function (err, results) {
+                        // 如果sql代码异常
+                        if (err) {
+                            // 响应异常对象
+                            return res.ck(err);
+                        }
+                        // 将获取的数量存入这个对象中
+                        value.fansNum = results[0].fans;
+                        return res.send({
+                            status: 0,
+                            msg: "获取页面数据成功！",
+                            data: value
+                        })
+                    })
+                });
+            });
+        })
+    });
+};
+
+// 根据作者id获取文章的路由处理函数
+module.exports.getCardByAuthorid = (req, res) => {
+    let value = null;
+    // 验证作者的id
+    const error = checkym.validate(req.query, checkym.schema.authorID);
+    // 如果验证结果不为空
+    if (error) {
+        // 则响应验证结果
+        return res.ck(error);
+    }
+    // 书写sql代码
+    const sql = "SELECT atm_book.id,atm_book.tname,atm_type.type,atm_book.tcontent,atm_book.ttime,atm_book.tisdel,atm_book.author_id,atm_user.unick FROM atm_book INNER JOIN atm_user ON atm_user.id=atm_book.author_id INNER JOIN atm_type ON atm_book.ttype=atm_type.id	WHERE tisdel=0 AND author_id=?";
+    // 执行sql代码
+    db.query(sql, req.query.authorID, function (err, results) {
+        // 如果sql代码异常
+        if (err) {
+            // 响应异常对象
+            return res.ck(err);
+        }
+        // 如果查询到的结果集的长度小于1
+        if (results.length < 1) {
+            return res.ck("获取帖子失败！");
+        }
+        // 将获取到的结果集存如value变量中
+        value = { list: results };
+        // 根据作者id再获取帖子的数量
+
+        const sql1 = "SELECT COUNT(*) AS card FROM atm_book WHERE tisdel=0 AND author_id=?";
+        db.query(sql1, req.query.authorID, function (err, results) {
+            // 如果sql代码异常
+            if (err) {
+                // 响应异常对象
+                return res.ck(err);
+            }
+            // 将获取的数量存入这个对象中
+            value.cardNum = results[0].card;
+            // 获取作者的全部评论
+            const sql2 = "SELECT COUNT(*) AS comments FROM atm_comments	WHERE authorid=? AND isdel=0";
+            db.query(sql2, req.query.authorID, function (err, results) {
+                // 如果sql代码异常
+                if (err) {
+                    // 响应异常对象
+                    return res.ck(err);
+                }
+                // 将获取的数量存入这个对象中
+                value.commentsNum = results[0].comments;
+                // 获取该用户关注的数量
+                const sql3 = "SELECT COUNT(*) AS focus FROM atm_focus WHERE uid=? AND ustatus=0";
+                db.query(sql3, req.query.authorID, function (err, results) {
+                    // 如果sql代码异常
+                    if (err) {
+                        // 响应异常对象
+                        return res.ck(err);
+                    }
+                    // 将获取的数量存入这个对象中
+                    value.focusNum = results[0].focus;
+                    // 获取该用户粉丝的数量
+                    const sql4 = "SELECT COUNT(*) AS fans FROM atm_fans WHERE ustatus=0 AND uid=1";
+                    db.query(sql4, req.query.authorID, function (err, results) {
+                        // 如果sql代码异常
+                        if (err) {
+                            // 响应异常对象
+                            return res.ck(err);
+                        }
+                        // 将获取的数量存入这个对象中
+                        value.fansNum = results[0].fans;
+                        // 根据作者id获取昵称
+                        const sql5 = "SELECT unick FROM atm_user WHERE id=?"
+                        db.query(sql, req.query.authorID, function (err, results) {
+                            // 如果sql代码异常
+                            if (err) {
+                                // 响应异常对象
+                                return res.ck(err);
+                            }
+                            // 如果获取到的长度小于1
+                            if (results.length < 1) {
+                                // 则响应提示信息
+                                return res.ck("获取作者昵称失败！");
+                            }
+                            // 将获取到的昵称存储这个对象中
+                            value.nick = results[0].unick;
+                            return res.send({
+                                status: 0,
+                                msg: "获取页面数据成功！",
+                                data: value
+                            })
+                        })
+                    })
+                });
+            });
+        })
     });
 }

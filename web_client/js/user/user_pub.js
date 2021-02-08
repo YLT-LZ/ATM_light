@@ -40,6 +40,7 @@ $(function () {
                     content: "帖子发布成功！",
                     end: function () {
                         $('#btn-reset').click();
+                        location.href = './../../index.html'
                     }
                 });
             }

@@ -16,6 +16,7 @@ $(function() {
     }
 });
 
+
 // 用户token认证的函数
 function authen(token, callback1, callback2) {
     // 如果用户本地的token不存在
@@ -24,7 +25,7 @@ function authen(token, callback1, callback2) {
         if (!callback1) {
             return;
         }
-        callback1();
+        return callback1();
     }
     // 否则执行callback2函数
     callback2();

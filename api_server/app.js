@@ -26,15 +26,17 @@ app.use(function (req, res, next) {
 app.use(expressJwt({ secret: config.jwtSecretkey, algorithms: ['HS256'] }).unless({ path: [/^\/api\//] }));
 const userRouter = require('./router/user');
 app.use('/api', userRouter);
-const userinforRouter = require('./router/userinfor')
+const userinforRouter = require('./router/userinfor');
 app.use('/my', userinforRouter);
-const articleRouter = require('./router/article');
-app.use('/my/article', articleRouter);
+const tourists = require("./router/tourists");
+app.use("/api/tourist", tourists);
+const article = require("./router/article");
+app.use("/my/article", article);
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
         return res.ck("Token值无效，请检查登录状态")
     }
-})
+});
 // 调用app的listen方法，指定端口号并启动服务器
 app.listen(8024, '127.0.0.1', () => {
     console.log("服务器成功开启！访问http://127.0.0.1:8024");
