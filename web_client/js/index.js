@@ -123,6 +123,7 @@ function getData(id, className, type = null) {
                 }
                 for (let i = 0; i < results.data.length; i++) {
                     results.data[i].praise = randnum(3);
+                    results.data[i].src = randomImg(20, 1);
                     results.data[i].look = randnum(4);
                 }
                 var htmlStr = template(id, results);

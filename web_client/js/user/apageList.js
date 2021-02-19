@@ -48,6 +48,7 @@ function getDataByAuthorid(id) {
 
             for (let i = 0; i < res.data.list.length; i++) {
                 res.data.list[i].praise = randnum(3);
+                res.data.list[i].src = randomImg(20, 1);
                 res.data.list[i].look = randnum(4);
             }
             const htmlStr = template("html-data", res.data);
