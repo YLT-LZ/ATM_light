@@ -776,7 +776,6 @@ function HMDGZ(e) {
                     },
                     success: function (res) {
                         if (res.data[0].ustatus == "1") {
-                            console.log("移出黑名单");
                             // 如果是黑名单
                             // 移出黑名单
                             Operation_user('/my/blackuser', { ublacklistid: $(e.target).attr('ublacklistid') })

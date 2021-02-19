@@ -1,6 +1,7 @@
 body {
     padding: 20px;
-    background-color: #f0f0f0;
+    background:url(./../../images/02.jpg) no-repeat;
+    background-size: cover;
 }
 
 div.layui-card {
@@ -19,7 +20,7 @@ li.layui-this {
 }
 
 .layui-tab-content ul {
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, .3);
     border-radius: 10px;
     padding: 0 20px;
 }

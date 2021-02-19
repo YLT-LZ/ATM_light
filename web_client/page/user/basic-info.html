@@ -22,27 +22,27 @@
             </div>
             <div class="layui-inline nick" id="unames">御帝哥謌</div>
         </div>
-        <div class="layui-card">
+        <div class="layui-card" style="background-color:rgba(0,0,0, .6)">
             <div class="layui-card-header layui-bg-green">基本信息</div>
             <div class="layui-card-body">
                 <!-- 查看信息 -->
                 <div class="look">
                     <ul>
                         <li>
-                            <div class="layui-inline">用户昵称</div>
-                            <div class="layui-inline" id="myunick">xxx</div>
+                            <div class="layui-inline" style="color: seashell;">用户昵称</div>
+                            <div class="layui-inline" id="myunick" style="color: seashell;">xxx</div>
                         </li>
                         <li>
-                            <div class="layui-inline">用户账号</div>
-                            <div class="layui-inline" id="myuid">xxx</div>
+                            <div class="layui-inline" style="color: seashell;">用户账号</div>
+                            <div class="layui-inline" id="myuid" style="color: seashell;">xxx</div>
                         </li>
                         <li>
-                            <div class="layui-inline">用户邮箱</div>
-                            <div class="layui-inline" id="myuemail">xxx</div>
+                            <div class="layui-inline" style="color: seashell;">用户邮箱</div>
+                            <div class="layui-inline" id="myuemail" style="color: seashell;">xxx</div>
                         </li>
                         <li>
-                            <div class="layui-inline">用户状态</div>
-                            <div class="layui-inline" id="myok">xxx</div>
+                            <div class="layui-inline" style="color: seashell;">用户状态</div>
+                            <div class="layui-inline" id="myok" style="color: seashell;">xxx</div>
                         </li>
                     </ul>
                 </div>
@@ -51,39 +51,39 @@
                     <form class="layui-form" action="" lay-filter="formUserInfor">
                         <!-- 用户昵称 -->
                         <div class="layui-form-item">
-                            <label class="layui-form-label">用户昵称</label>
+                            <label class="layui-form-label" style="color: seashell;">用户昵称</label>
                             <div class="layui-input-block">
                                 <input type="text" name="unick" required lay-verify="required" placeholder="请输入用户昵称"
-                                    autocomplete="off" class="layui-input" id="userform_unick">
+                                    autocomplete="off" class="layui-input" id="userform_unick" style="width: 600px;">
                             </div>
                         </div>
                         <!-- 用户账号 -->
                         <div class="layui-form-item">
-                            <label class="layui-form-label">用户账号</label>
+                            <label class="layui-form-label" style="color: seashell;">用户账号</label>
                             <div class="layui-input-block">
                                 <input type="text" name="ulogid" readonly required lay-verify="required"
-                                    placeholder="请输入用户账号" autocomplete="off" class="layui-input">
+                                    placeholder="请输入用户账号" autocomplete="off" class="layui-input" style="width: 600px;">
                             </div>
                         </div>
                         <!-- 用户邮箱 -->
                         <div class="layui-form-item">
-                            <label class="layui-form-label">用户邮箱</label>
+                            <label class="layui-form-label" style="color: seashell;">用户邮箱</label>
                             <div class="layui-input-block">
                                 <input type="text" name="uemail" required lay-verify="required" placeholder="请输入用户邮箱"
-                                    autocomplete="off" class="layui-input" id="userform_email">
+                                    autocomplete="off" class="layui-input" id="userform_email" style="width: 600px;">
                             </div>
                         </div>
                         <!-- 用户状态 -->
                         <div class="layui-form-item">
-                            <label class="layui-form-label">用户状态</label>
+                            <label class="layui-form-label" style="color: seashell;">用户状态</label>
                             <div class="layui-input-block">
                                 <input type="text" name="ustatus" required lay-verify="required | email" readonly
-                                    placeholder="请输入用户邮箱" autocomplete="off" class="layui-input">
+                                    placeholder="请输入用户邮箱" autocomplete="off" class="layui-input" style="width: 600px;">
                             </div>
                         </div>
                         <!-- 修改头像 -->
                         <div class="layui-form-item">
-                            <label class="layui-form-label">用户头像</label>
+                            <label class="layui-form-label" style="color: seashell;">用户头像</label>
                             <div class="layui-input-block row">
                                 <!--图片裁剪框 start-->
                                 <div class="tailoring-container">
@@ -92,7 +92,8 @@
                                         <div class="tailoring-content-one">
                                             <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
                                                 <input type="file" accept="image/jpg,image/jpeg,image/png" name="file"
-                                                    id="chooseImg" class="hidden" onChange="selectImg(this)" id="user_images">
+                                                    id="chooseImg" class="hidden" onChange="selectImg(this)"
+                                                    id="user_images">
                                                 选择图片
                                             </label>
                                         </div>
@@ -130,7 +131,7 @@
         </div>
     </div>
     </div>
-    <a href="../../index.html" class="layui-btn">返回主页</a>
+    <a href="../../index.html" class="layui-btn" style="background-color: slateblue;">返回主页</a>
     </div>
 
     <script src="../../assets/jQuery-v3.5.1/jquery-3.5.1.min.js"></script>

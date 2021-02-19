@@ -11,12 +11,12 @@ let cardID = null;
 
 // 点击关注的事件
 $("div.container").on("click", "#btn-focus", function () {
-    console.log("关注事件没问题！");
+    GZ(authorid);
 });
 
 // 点击拉黑的事件
 $("div.container").on("click", "#btn-block", function () {
-    console.log("拉黑事件没问题！");
+    LH(authorid)
 });
 
 // 点击输入框的事件
@@ -151,4 +151,452 @@ function randnum(num) {
         code += randomNum;
     }
     return code;
+}
+
+
+// 取关拉黑删除ajax请求的封装函数
+function Operation_user(url, data) {
+    $.ajax({
+        type: "post",
+        url: url,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+        },
+        data: data,
+        success: function (res) {
+            if (res.status !== 0) {
+                return layer.open({
+                    icon: 5,
+                    title: "提示",
+                    content: res.msg,
+                    time: 2000,
+                });
+            }
+        }
+    })
+}
+// 他人操作取关拉黑删除ajax请求的封装函数
+function Operation_TRuser(url, data) {
+    $.ajax({
+        type: "post",
+        url: url,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+        },
+        data: data,
+        success: function (res) {
+            if (res.status !== 0) {
+                return layer.open({
+                    icon: 5,
+                    title: "提示",
+                    content: res.msg,
+                    time: 2000,
+                });
+            }
+        }
+    });
+}
+
+function GZ(Q) {
+    // 查询是否是对方黑名单数据
+    $.ajax({
+        type: "post",
+        url: "/my/CXTRblacklist",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+        },
+        data: {
+            ublacklistid: Q
+        },
+        success: function (res) {
+            if (res.ustatus == '1') {
+                return layer.open({
+                    icon: 5,
+                    title: "提示",
+                    content: '你是对方黑名单用户，无法关注',
+                    time: 2000,
+                });
+            } else {
+                // 如果不是对方黑名单数据查询自己黑名单数据
+                console.log(Q);
+                $.ajax({
+                    type: "post",
+                    url: "/my/CXblacklist",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                    },
+                    data: {
+                        ublacklistid: Q
+                    },
+                    success: function (res) {
+                        if (res.data && res.data[0].ustatus == "1") {
+                            // 如果是黑名单
+                            // 移出黑名单
+                            Operation_user('/my/blackuser', { ublacklistid: Q })
+                            // 查询自己关注数据
+                            $.ajax({
+                                type: "post",
+                                url: "/my/CXfollow",
+                                headers: {
+                                    Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                },
+                                data: {
+                                    ufocusid: Q
+                                },
+                                success: function (res) {
+                                    // 如果没有关注数据
+                                    if (res.status !== 0) {
+                                        // 添加关注数据
+                                        $.ajax({
+                                            type: "post",
+                                            url: "/my/XRfollowPass",
+                                            headers: {
+                                                Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                            },
+                                            data: {
+                                                ufocusid: Q
+                                            },
+                                            success: function (res) {
+                                                if (res.status !== 0) {
+                                                    return layer.open({
+                                                        icon: 5,
+                                                        title: "提示",
+                                                        content: res.msg,
+                                                        time: 2000,
+                                                    });
+                                                }
+                                                // 查看对方粉丝列表是否有数据
+                                                $.ajax({
+                                                    type: "post",
+                                                    url: "/my/CXTRmyfans",
+                                                    headers: {
+                                                        Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                                    },
+                                                    data: {
+                                                        ufansid: Q
+                                                    },
+                                                    success: function (res) {
+                                                        // 如果没粉丝数据
+                                                        if (res.status !== 0) {
+                                                            // 写入粉丝数据
+                                                            $.ajax({
+                                                                type: "post",
+                                                                url: "/my/TRXRPowdering",
+                                                                headers: {
+                                                                    Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                                                },
+                                                                data: {
+                                                                    ufansid: Q
+                                                                },
+                                                                success: function (res) {
+                                                                    if (res.status !== 0) {
+                                                                        return layer.open({
+                                                                            icon: 5,
+                                                                            title: "提示",
+                                                                            content: res.msg,
+                                                                            time: 2000,
+                                                                        });
+                                                                    }
+                                                                }
+                                                            });
+                                                        } else {
+                                                            // 写入粉丝数据
+                                                            Operation_TRuser('/my/TRPowdering', { ufansid: Q })
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    } else {
+                                        // 如果有关注数据
+                                        // 修改关注数据
+                                        Operation_user('/my/followNOPass', { ufocusid: Q })
+                                        // 查看对方粉丝列表是否有数据
+                                        $.ajax({
+                                            type: "post",
+                                            url: "/my/CXTRmyfans",
+                                            headers: {
+                                                Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                            },
+                                            data: {
+                                                ufansid: Q
+                                            },
+                                            success: function (res) {
+                                                // 如果没粉丝数据
+                                                if (res.status !== 0) {
+                                                    // 写入粉丝数据
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "/my/TRXRPowdering",
+                                                        headers: {
+                                                            Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                                        },
+                                                        data: {
+                                                            ufansid: Q
+                                                        },
+                                                        success: function (res) {
+                                                            if (res.status !== 0) {
+                                                                return layer.open({
+                                                                    icon: 5,
+                                                                    title: "提示",
+                                                                    content: res.msg,
+                                                                    time: 2000,
+                                                                });
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    // 写入粉丝数据
+                                                    Operation_TRuser('/my/TRPowdering', { ufansid: Q })
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                            layer.open({
+                                icon: 6,
+                                title: "提示",
+                                content: '关注成功',
+                                time: 2000,
+                            });
+                        } else {
+                            // 查询自己关注数据
+                            $.ajax({
+                                type: "post",
+                                url: "/my/CXfollow",
+                                headers: {
+                                    Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                },
+                                data: {
+                                    ufocusid: Q
+                                },
+                                success: function (res) {
+                                    // 如果没有关注数据
+                                    if (res.status !== 0) {
+                                        // 添加关注数据
+                                        $.ajax({
+                                            type: "post",
+                                            url: "/my/XRfollowPass",
+                                            headers: {
+                                                Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                            },
+                                            data: {
+                                                ufocusid: Q
+                                            },
+                                            success: function (res) {
+                                                if (res.status !== 0) {
+                                                    return layer.open({
+                                                        icon: 5,
+                                                        title: "提示",
+                                                        content: res.msg,
+                                                        time: 2000,
+                                                    });
+                                                }
+                                                // 查看对方粉丝列表是否有数据
+                                                $.ajax({
+                                                    type: "post",
+                                                    url: "/my/CXTRmyfans",
+                                                    headers: {
+                                                        Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                                    },
+                                                    data: {
+                                                        ufansid: Q
+                                                    },
+                                                    success: function (res) {
+                                                        // 如果没粉丝数据
+                                                        if (res.status !== 0) {
+                                                            // 写入粉丝数据
+                                                            $.ajax({
+                                                                type: "post",
+                                                                url: "/my/TRXRPowdering",
+                                                                headers: {
+                                                                    Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                                                },
+                                                                data: {
+                                                                    ufansid: Q
+                                                                },
+                                                                success: function (res) {
+                                                                    if (res.status !== 0) {
+                                                                        return layer.open({
+                                                                            icon: 5,
+                                                                            title: "提示",
+                                                                            content: res.msg,
+                                                                            time: 2000,
+                                                                        });
+                                                                    }
+                                                                }
+                                                            });
+                                                        } else {
+                                                            // 写入粉丝数据
+                                                            Operation_TRuser('/my/TRPowdering', { ufansid: Q })
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    } else {
+                                        // 如果有关注数据
+                                        // 修改关注数据
+                                        Operation_user('/my/followNOPass', { ufocusid: Q })
+                                        // 查看对方粉丝列表是否有数据
+                                        $.ajax({
+                                            type: "post",
+                                            url: "/my/CXTRmyfans",
+                                            headers: {
+                                                Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                            },
+                                            data: {
+                                                ufansid: Q
+                                            },
+                                            success: function (res) {
+                                                // 如果没粉丝数据
+                                                if (res.status !== 0) {
+                                                    // 写入粉丝数据
+                                                    $.ajax({
+                                                        type: "post",
+                                                        url: "/my/TRXRPowdering",
+                                                        headers: {
+                                                            Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                                                        },
+                                                        data: {
+                                                            ufansid: Q
+                                                        },
+                                                        success: function (res) {
+                                                            if (res.status !== 0) {
+                                                                return layer.open({
+                                                                    icon: 5,
+                                                                    title: "提示",
+                                                                    content: res.msg,
+                                                                    time: 2000,
+                                                                });
+                                                            }
+                                                        }
+                                                    });
+                                                } else {
+                                                    // 写入粉丝数据
+                                                    Operation_TRuser('/my/TRPowdering', { ufansid: Q })
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                            layer.open({
+                                icon: 6,
+                                title: "提示",
+                                content: '关注成功',
+                                time: 2000,
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    });
+}
+
+function LH(Q) {
+    // 查询黑名单
+    $.ajax({
+        type: "post",
+        url: "/my/CXblacklist",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+        },
+        data: {
+            ublacklistid: Q
+        },
+        success: function (res) {
+            if (res.status !== 0) {
+                // 添加黑名单数据
+                $.ajax({
+                    type: "post",
+                    url: "/my/XRblackuser",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                    },
+                    data: {
+                        ublacklistid: Q
+                    },
+                    success: function (res) {
+                        if (res.status !== 0) {
+                            return layer.open({
+                                icon: 5,
+                                title: "提示",
+                                content: res.msg,
+                                time: 2000,
+                            });
+                        }
+                        // 粉丝列表减少
+                        Operation_user('/my/NOPowdering', { ufansid: Q })
+                        // 对方关注列表减少
+                        Operation_TRuser('/my/TRfollowPass', { ufocusid: Q })
+                        // 通过关注列表看我们是否关注他人
+                        $.ajax({
+                            type: "post",
+                            url: "/my/CXfollow",
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                            },
+                            data: {
+                                ufocusid: Q
+                            },
+                            success: function (res) {
+                                if (res.status !== 0) {
+                                    // 没关注不做操作
+                                    return
+                                } else {
+                                    // 关注了去除关注列表数据
+                                    Operation_user('/my/followPass', { ufocusid: Q })
+                                    // 操作他人的粉丝数据
+                                    Operation_TRuser('/my/TRNOPowdering', { ufansid: Q })
+                                }
+                            }
+                        });
+                    }
+                });
+                layer.open({
+                    icon: 6,
+                    title: "提示",
+                    content: '拉黑成功',
+                    time: 2000,
+                });
+            } else {
+                Operation_user('/my/NOblackuser', { ublacklistid: Q })
+                // 粉丝列表减少
+                Operation_user('/my/NOPowdering', { ufansid: Q })
+                // 对方关注列表减少
+                Operation_TRuser('/my/TRfollowPass', { ufocusid: Q })
+                // 通过关注列表看我们是否关注他人
+                $.ajax({
+                    type: "post",
+                    url: "/my/CXfollow",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token") || ""}`
+                    },
+                    data: {
+                        ufocusid: Q
+                    },
+                    success: function (res) {
+                        if (res.status !== 0) {
+                            // 没关注不做操作
+                            return
+                        } else {
+                            // 关注了去除关注列表数据
+                            Operation_user('/my/followPass', { ufocusid: Q })
+                            // 操作他人的粉丝数据
+                            Operation_TRuser('/my/TRNOPowdering', { ufansid: Q })
+                        }
+                    }
+                });
+                layer.open({
+                    icon: 6,
+                    title: "提示",
+                    content: '拉黑成功',
+                    time: 2000,
+                });
+            }
+        }
+    });
 }
