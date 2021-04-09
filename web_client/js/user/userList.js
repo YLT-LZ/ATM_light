@@ -1056,3 +1056,8 @@ function HMDGZ(e) {
         }
     });
 }
+// 关注列表点击事件跳转方法
+function clickmeone(one) {
+    localStorage.setItem("authorID", one);
+    location.href = './apageList.html';
+}

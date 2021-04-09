@@ -40,7 +40,7 @@
                                     <!-- 关注名称 -->
                                     <div class="content">
                                         <p>&nbsp;</p>
-                                        <p style="color: #fff; margin-left:14px;" class="name">{{$value.unick}}</p>
+                                        <p style="color: #fff; margin-left:14px;" class="name" onclick='clickmeone({{$value.ufocusid}})'><a href="JavaScript:;" style="color: #fff;">{{$value.unick}}</a></p>
                                         <p>&nbsp;</p>
                                     </div>
                                     <div id='focusbut'>
@@ -61,7 +61,7 @@
                         <ul id="fansul">
                             <script type="text/html" id="fans">
                                 {{ each data}}
-                                <li>
+                                <li  ufansid={{$value.ufansid}} class="tiaozhuan">
                                     <!-- 粉丝头像 -->
                                     <div class="via-box">
                                         <img src={{$value.uimage}} alt="" title="头像">
@@ -69,7 +69,7 @@
                                     <!-- 粉丝名称 -->
                                     <div class="content">
                                         <p>&nbsp;</p>
-                                        <p style="color: #fff; margin-left:14px;" class="name">{{$value.unick}}</p>
+                                        <p style="color: #fff; margin-left:14px;" class="name" onclick='clickmeone({{$value.ufansid}})'><a href="JavaScript:;" style="color: #fff;">{{$value.unick}}</a></p>
                                         <p>&nbsp;</p>
                                     </div>
                                     <div id='focusbut2'>
@@ -90,7 +90,7 @@
                         <ul id="blacklistul">
                             <script type="text/html" id="ublacklistid">
                                 {{ each data}}
-                                <li>
+                                <li  ublacklistid={{$value.ublacklistid}} class="tiaozhuan">
                                     <!-- 黑名单头像 -->
                                     <div class="via-box">
                                         <img src={{$value.uimage}} alt="" title="头像">
@@ -98,7 +98,7 @@
                                     <!-- 黑名单名称 -->
                                     <div class="content">
                                         <p>&nbsp;</p>
-                                        <p style="color: #fff; margin-left:14px;" class="name">{{$value.unick}}</p>
+                                        <p style="color: #fff; margin-left:14px;" class="name" onclick='clickmeone({{$value.ublacklistid}})'><a href="JavaScript:;" style="color: #fff;">{{$value.unick}}</a></p>
                                         <p>&nbsp;</p>
                                     </div>
                                     <div id='focusbut3'>
